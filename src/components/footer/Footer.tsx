@@ -1,90 +1,54 @@
+import { Phone, Instagram, MapPin } from "lucide-react";
+import logo from "@/assets/logo.jpg";
+
 const Footer = () => {
   return (
-    <footer className="w-full bg-white text-black pt-8 pb-2 px-6 border-t border-[#e5e5e5] mt-48">
-      <div className="">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-8">
-          {/* Brand - Left side */}
-          <div>
-            <img 
-              src="/Linea_Jewelry_Inc-2.svg" 
-              alt="Linea Jewelry Inc." 
-              className="mb-4 h-6 w-auto"
-            />
-            <p className="text-sm font-light text-black/70 leading-relaxed max-w-md mb-6">
-              Minimalist jewelry crafted for the modern individual
+    <footer className="w-full bg-primary text-primary-foreground pt-12 pb-4 px-6 mt-24">
+      <div className="max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-10">
+          {/* Brand */}
+          <div className="text-center md:text-right">
+            <img src={logo} alt="קובה אליהו" className="h-20 w-auto rounded-full mb-4 mx-auto md:mx-0" />
+            <p className="text-primary-foreground/80 text-sm leading-relaxed">
+              טעמים מבית סבתא — קובה ביתית מסורתית בהכנה אישית ובאהבה
             </p>
-            
-            {/* Contact Information */}
-            <div className="space-y-2 text-sm font-light text-black/70">
-              <div>
-                <p className="font-normal text-black mb-1">Visit Us</p>
-                <p>123 Madison Avenue</p>
-                <p>New York, NY 10016</p>
-              </div>
-              <div>
-                <p className="font-normal text-black mb-1 mt-3">Contact</p>
-                <p>+1 (212) 555-0123</p>
-                <p>hello@lineajewelry.com</p>
-              </div>
+          </div>
+
+          {/* Contact */}
+          <div className="text-center md:text-right">
+            <h4 className="font-serif text-lg font-semibold mb-4">צור קשר</h4>
+            <div className="space-y-3 text-sm text-primary-foreground/80">
+              <a href="tel:0509766643" className="flex items-center gap-2 justify-center md:justify-start hover:text-primary-foreground transition-colors">
+                <Phone className="w-4 h-4" />
+                <span dir="ltr">050-976-6643</span>
+              </a>
+              <a
+                href="https://www.instagram.com/kube_eliyahu?igsh=MXBpM3I1eHNvNXFyOA=="
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 justify-center md:justify-start hover:text-primary-foreground transition-colors"
+              >
+                <Instagram className="w-4 h-4" />
+                <span>@kube_eliyahu</span>
+              </a>
             </div>
           </div>
 
-          {/* Link lists - Right side */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* Shop */}
-            <div>
-              <h4 className="text-sm font-normal mb-4">Shop</h4>
-              <ul className="space-y-2">
-                <li><a href="#" className="text-sm font-light text-black/70 hover:text-black transition-colors">New In</a></li>
-                <li><a href="#" className="text-sm font-light text-black/70 hover:text-black transition-colors">Rings</a></li>
-                <li><a href="#" className="text-sm font-light text-black/70 hover:text-black transition-colors">Earrings</a></li>
-                <li><a href="#" className="text-sm font-light text-black/70 hover:text-black transition-colors">Bracelets</a></li>
-                <li><a href="#" className="text-sm font-light text-black/70 hover:text-black transition-colors">Necklaces</a></li>
-              </ul>
-            </div>
-
-            {/* Support */}
-            <div>
-              <h4 className="text-sm font-normal mb-4">Support</h4>
-              <ul className="space-y-2">
-                <li><a href="#" className="text-sm font-light text-black/70 hover:text-black transition-colors">Size Guide</a></li>
-                <li><a href="#" className="text-sm font-light text-black/70 hover:text-black transition-colors">Care Instructions</a></li>
-                <li><a href="#" className="text-sm font-light text-black/70 hover:text-black transition-colors">Returns</a></li>
-                <li><a href="#" className="text-sm font-light text-black/70 hover:text-black transition-colors">Shipping</a></li>
-                <li><a href="#" className="text-sm font-light text-black/70 hover:text-black transition-colors">Contact</a></li>
-              </ul>
-            </div>
-
-            {/* Connect */}
-            <div>
-              <h4 className="text-sm font-normal mb-4">Connect</h4>
-              <ul className="space-y-2">
-                <li><a href="#" className="text-sm font-light text-black/70 hover:text-black transition-colors">Instagram</a></li>
-                <li><a href="#" className="text-sm font-light text-black/70 hover:text-black transition-colors">Pinterest</a></li>
-                <li><a href="#" className="text-sm font-light text-black/70 hover:text-black transition-colors">Newsletter</a></li>
-              </ul>
+          {/* Hours */}
+          <div className="text-center md:text-right">
+            <h4 className="font-serif text-lg font-semibold mb-4">שעות פעילות</h4>
+            <div className="space-y-2 text-sm text-primary-foreground/80">
+              <p>ראשון - חמישי: 9:00 - 19:00</p>
+              <p>שישי: 9:00 - 14:00</p>
+              <p>שבת: סגור</p>
             </div>
           </div>
         </div>
-      </div>
 
-      {/* Bottom section - edge to edge separator */}
-      <div className="border-t border-[#e5e5e5] -mx-6 px-6 pt-2">
-        <div className="flex flex-col md:flex-row justify-between items-center">
-          <p className="text-sm font-light text-black mb-1 md:mb-0">
-            © 2024 Linea. All rights reserved. Template made by{" "}
-            <a href="https://www.liljeros.co" target="_blank" rel="noopener noreferrer" className="hover:text-black/70 transition-colors underline">
-              Rickard Liljeros
-            </a>
+        <div className="border-t border-primary-foreground/20 pt-4 text-center">
+          <p className="text-xs text-primary-foreground/60">
+            © {new Date().getFullYear()} קובה אליהו. כל הזכויות שמורות. כשר בשרי.
           </p>
-          <div className="flex space-x-6">
-            <a href="/privacy-policy" className="text-sm font-light text-black hover:text-black/70 transition-colors">
-              Privacy Policy
-            </a>
-            <a href="/terms-of-service" className="text-sm font-light text-black hover:text-black/70 transition-colors">
-              Terms of Service
-            </a>
-          </div>
         </div>
       </div>
     </footer>

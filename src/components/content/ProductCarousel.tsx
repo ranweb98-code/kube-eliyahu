@@ -4,126 +4,78 @@ import {
   CarouselItem,
 } from "@/components/ui/carousel";
 import { Card, CardContent } from "@/components/ui/card";
-import { Link } from "react-router-dom";
-import pantheonImage from "@/assets/pantheon.jpg";
-import eclipseImage from "@/assets/eclipse.jpg";
-import haloImage from "@/assets/halo.jpg";
-import obliqueImage from "@/assets/oblique.jpg";
-import lintelImage from "@/assets/lintel.jpg";
-import shadowlineImage from "@/assets/shadowline.jpg";
-import organicEarring from "@/assets/organic-earring.png";
-import linkBracelet from "@/assets/link-bracelet.png";
+import kubbeh1 from "@/assets/kubbeh-1.jpg";
+import kubbeh2 from "@/assets/kubbeh-2.jpg";
+import kubbeh3 from "@/assets/kubbeh-3.jpg";
+import kubbeh4 from "@/assets/kubbeh-4.jpg";
+import kubbeh5 from "@/assets/kubbeh-5.jpg";
+import kubbeh6 from "@/assets/kubbeh-6.jpg";
+import kubbeh7 from "@/assets/kubbeh-7.jpg";
+import kubbeh8 from "@/assets/kubbeh-8.jpg";
 
 interface Product {
   id: number;
   name: string;
-  category: string;
+  description: string;
   price: string;
   image: string;
+  isNew?: boolean;
 }
 
 const products: Product[] = [
-  {
-    id: 1,
-    name: "Pantheon",
-    category: "Earrings",
-    price: "€2,850",
-    image: pantheonImage,
-  },
-  {
-    id: 2,
-    name: "Eclipse",
-    category: "Bracelets",
-    price: "€3,200",
-    image: eclipseImage,
-  },
-  {
-    id: 3,
-    name: "Halo",
-    category: "Earrings",
-    price: "€1,950",
-    image: haloImage,
-  },
-  {
-    id: 4,
-    name: "Oblique",
-    category: "Earrings",
-    price: "€1,650",
-    image: obliqueImage,
-  },
-  {
-    id: 5,
-    name: "Lintel",
-    category: "Earrings",
-    price: "€2,250",
-    image: lintelImage,
-  },
-  {
-    id: 6,
-    name: "Shadowline",
-    category: "Bracelets",
-    price: "€3,950",
-    image: shadowlineImage,
-  },
+  { id: 1, name: "קובה סלק", description: "במילוי בשר בקר", price: "₪45", image: kubbeh1 },
+  { id: 2, name: "קובה סיסקה", description: "מבשר מפורק", price: "₪50", image: kubbeh4, isNew: true },
+  { id: 3, name: "קובה חמוסטה", description: "במרק עגבניות", price: "₪45", image: kubbeh5 },
+  { id: 4, name: "קובה המוסט", description: "במרק לימון", price: "₪45", image: kubbeh6 },
+  { id: 5, name: "קובה ברשת", description: "קובה מטוגנת", price: "₪55", image: kubbeh7, isNew: true },
+  { id: 6, name: "מרק קובה", description: "מרק מוכן עם קובה", price: "₪60", image: kubbeh8 },
 ];
 
 const ProductCarousel = () => {
   return (
-    <section className="w-full mb-16 px-6">
-      <Carousel
-          opts={{
-            align: "start",
-            loop: false,
-          }}
-          className="w-full"
-        >
-          <CarouselContent className="">
-            {products.map((product) => (
-               <CarouselItem
-                 key={product.id}
-                 className="basis-1/2 md:basis-1/3 lg:basis-1/4 pr-2 md:pr-4"
-               >
-                 <Link to={`/product/${product.id}`}>
-                  <Card className="border-none shadow-none bg-transparent group">
-                    <CardContent className="p-0">
-                      <div className="aspect-square mb-3 overflow-hidden bg-muted/10 relative">
-                        <img
-                          src={product.image}
-                          alt={product.name}
-                          className="w-full h-full object-cover transition-all duration-300 group-hover:opacity-0"
-                        />
-                        <img
-                          src={product.category === "Earrings" ? organicEarring : linkBracelet}
-                          alt={`${product.name} lifestyle`}
-                          className="absolute inset-0 w-full h-full object-cover transition-all duration-300 opacity-0 group-hover:opacity-100"
-                        />
-                        <div className="absolute inset-0 bg-black/[0.03]"></div>
-                        {(product.id === 1 || product.id === 3) && (
-                          <div className="absolute top-2 left-2 px-2 py-1 text-xs font-medium text-black">
-                            NEW
-                          </div>
-                        )}
+    <section className="w-full py-12 px-6">
+      <div className="max-w-5xl mx-auto mb-8">
+        <h2 className="font-serif text-2xl md:text-3xl font-bold text-foreground">
+          התפריט שלנו
+        </h2>
+      </div>
+      <Carousel opts={{ align: "start", loop: false }} className="w-full max-w-5xl mx-auto">
+        <CarouselContent>
+          {products.map((product) => (
+            <CarouselItem key={product.id} className="basis-[75%] sm:basis-1/2 md:basis-1/3 pl-4">
+              <Card className="border-none shadow-none bg-transparent group cursor-pointer">
+                <CardContent className="p-0">
+                  <div className="aspect-square mb-3 overflow-hidden rounded-lg bg-muted/10 relative">
+                    <img
+                      src={product.image}
+                      alt={product.name}
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                    {product.isNew && (
+                      <div className="absolute top-3 right-3 bg-accent text-accent-foreground px-3 py-1 rounded-full text-xs font-bold">
+                        חדש!
                       </div>
-                     <div className="space-y-1">
-                       <p className="text-sm font-light text-foreground">
-                         {product.category}
-                       </p>
-                       <div className="flex justify-between items-center">
-                         <h3 className="text-sm font-medium text-foreground">
-                           {product.name}
-                         </h3>
-                         <p className="text-sm font-light text-foreground">
-                           {product.price}
-                         </p>
-                       </div>
-                     </div>
-                   </CardContent>
-                 </Card>
-                 </Link>
-              </CarouselItem>
-            ))}
-          </CarouselContent>
-        </Carousel>
+                    )}
+                  </div>
+                  <div className="space-y-1">
+                    <div className="flex justify-between items-center">
+                      <h3 className="font-serif text-lg font-semibold text-foreground">
+                        {product.name}
+                      </h3>
+                      <p className="text-base font-bold text-primary">
+                        {product.price}
+                      </p>
+                    </div>
+                    <p className="text-sm text-muted-foreground">
+                      {product.description}
+                    </p>
+                  </div>
+                </CardContent>
+              </Card>
+            </CarouselItem>
+          ))}
+        </CarouselContent>
+      </Carousel>
     </section>
   );
 };

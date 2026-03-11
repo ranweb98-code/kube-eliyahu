@@ -1,3 +1,4 @@
+import AnimateOnScroll from "@/components/AnimateOnScroll";
 import kubbeh8 from "@/assets/kubbeh-8.jpg";
 
 const EditorialSection = () => {
@@ -5,7 +6,7 @@ const EditorialSection = () => {
     <section className="w-full py-16 px-6">
       <div className="max-w-5xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-          <div className="space-y-5">
+          <AnimateOnScroll className="space-y-5">
             <h2 className="font-serif text-3xl md:text-4xl font-bold text-foreground leading-tight">
               הסיפור שלנו
             </h2>
@@ -29,9 +30,9 @@ const EditorialSection = () => {
                 <p className="text-xs text-muted-foreground">כל יום</p>
               </div>
             </div>
-          </div>
+          </AnimateOnScroll>
 
-          <div className="order-first md:order-last">
+          <AnimateOnScroll delay={200} className="order-first md:order-last">
             <div className="w-full aspect-square overflow-hidden rounded-lg">
               <img
                 src={kubbeh8}
@@ -39,7 +40,7 @@ const EditorialSection = () => {
                 className="w-full h-full object-cover"
               />
             </div>
-          </div>
+          </AnimateOnScroll>
         </div>
       </div>
     </section>

@@ -6,20 +6,16 @@
 
 @layer base {
   :root {
-    /* Warm cream background inspired by packaging */
     --background: 40 33% 96%;
     --foreground: 150 30% 15%;
     
-    /* Brand green from logo */
     --primary: 160 45% 22%;
     --primary-foreground: 40 33% 96%;
     --primary-hover: 160 45% 28%;
     
-    /* Gold accent from packaging */
     --accent: 42 70% 55%;
     --accent-foreground: 150 30% 15%;
     
-    /* Warm red from kubbeh */
     --destructive: 350 65% 45%;
     --destructive-foreground: 0 0% 98%;
     
@@ -39,7 +35,6 @@
     --popover: 40 30% 98%;
     --popover-foreground: 150 30% 15%;
     
-    /* Navigation */
     --nav-background: 40 30% 98%;
     --nav-foreground: 150 30% 15%;
     --nav-hover: 160 45% 22%;
@@ -74,5 +69,22 @@
 
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Frank Ruhl Libre', serif;
+  }
+}
+
+@layer utilities {
+  .story-link {
+    @apply relative;
+  }
+  .story-link::after {
+    content: '';
+    @apply absolute w-full scale-x-0 h-0.5 bottom-0 left-0 bg-current origin-bottom-right transition-transform duration-300;
+  }
+  .story-link:hover::after {
+    @apply scale-x-100 origin-bottom-left;
+  }
+
+  .hover-scale {
+    @apply transition-transform duration-200 hover:scale-105;
   }
 }

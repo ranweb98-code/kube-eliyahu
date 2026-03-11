@@ -9,8 +9,8 @@ const LargeHero = () => {
         <img
           src={heroImage}
           alt="קובה ביתית מסורתית"
-          className="w-full h-full object-cover animate-[scale-in_1.2s_ease-out]"
-        />
+          className="w-full h-full object-cover animate-[scale-in_1.2s_ease-out]" />
+        
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-black/30" />
         
         <div className="absolute bottom-0 right-0 left-0 p-6 md:p-12 text-white">
@@ -21,15 +21,15 @@ const LargeHero = () => {
             טעמים מבית סבתא
           </p>
           <a href="tel:0509766643" className="animate-fade-in inline-block" style={{ animationDelay: "700ms", animationFillMode: "both" }}>
-            <Button className="bg-accent text-accent-foreground hover:bg-accent/90 hover-scale rounded-full px-8 py-6 text-base font-medium gap-2">
-              <Phone className="w-5 h-5" />
-              להזמנות: 050-976-6643
-            </Button>
+            
+
+
+            
           </a>
         </div>
       </div>
-    </section>
-  );
+    </section>);
+
 };
 
 export default LargeHero;

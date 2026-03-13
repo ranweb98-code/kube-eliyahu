@@ -1,40 +1,62 @@
 import AnimateOnScroll from "@/components/AnimateOnScroll";
-import { Phone } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import kubbeh5 from "@/assets/kubbeh-5.jpg";
-import kubbeh7 from "@/assets/kubbeh-7.jpg";
+import { Star, Quote } from "lucide-react";
+
+interface Testimonial {
+  name: string;
+  text: string;
+  rating: number;
+}
+
+const testimonials: Testimonial[] = [
+  {
+    name: "רונית כ.",
+    text: "הקובה הכי טעימה שאכלתי מחוץ לבית! ממש כמו של סבתא. הזמנתי לשבת ולא נשאר כלום.",
+    rating: 5,
+  },
+  {
+    name: "אלי מ.",
+    text: "הזמנו מגש לאירוע משפחתי – כולם היו בהלם מהטעם. איכות ברמה אחרת לגמרי.",
+    rating: 5,
+  },
+  {
+    name: "שירה ד.",
+    text: "המשלוח הגיע מהר, הכל ארוז יפה. הקובה טרייה ומדהימה. נהיינו לקוחות קבועים!",
+    rating: 5,
+  },
+];
 
 const OneThirdTwoThirdsSection = () => {
   return (
     <section className="w-full py-16 px-6 bg-primary text-primary-foreground">
       <div className="max-w-5xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
-          <AnimateOnScroll className="lg:col-span-1 space-y-6 text-center lg:text-right">
-            <h2 className="font-serif text-3xl md:text-4xl font-bold leading-tight">
-              הזמנות לאירועים ושבת
-            </h2>
-            <p className="text-primary-foreground/80 leading-relaxed">
-              מגשי קובה לאירועים, שבתות וחגים. הכנה טרייה לפי הזמנה.
-              משלוחים לכל הארץ.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start">
-              <a href="tel:0509766643">
-                <Button className="bg-accent text-accent-foreground hover:bg-accent/90 hover-scale rounded-full px-6 py-5 gap-2 font-medium">
-                  <Phone className="w-4 h-4" />
-                  הזמן עכשיו
-                </Button>
-              </a>
-            </div>
-          </AnimateOnScroll>
+        <AnimateOnScroll className="text-center mb-12">
+          <h2 className="font-serif text-3xl md:text-4xl font-bold leading-tight mb-3">
+            מה הלקוחות שלנו אומרים
+          </h2>
+          <p className="text-primary-foreground/70">
+            גאים בכל ביקורת ובכל לקוח מרוצה
+          </p>
+        </AnimateOnScroll>
 
-          <div className="lg:col-span-2 grid grid-cols-2 gap-4">
-            <AnimateOnScroll delay={150} className="aspect-[3/4] rounded-lg overflow-hidden">
-              <img src={kubbeh5} alt="קובה לאירועים" className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {testimonials.map((t, i) => (
+            <AnimateOnScroll key={i} delay={i * 150}>
+              <div className="bg-primary-foreground/10 backdrop-blur-sm rounded-xl p-6 space-y-4 h-full border border-primary-foreground/10">
+                <Quote className="w-8 h-8 text-accent opacity-70" />
+                <p className="text-primary-foreground/90 leading-relaxed text-sm">
+                  {t.text}
+                </p>
+                <div className="flex items-center justify-between pt-2">
+                  <span className="font-semibold text-sm">{t.name}</span>
+                  <div className="flex gap-0.5">
+                    {Array.from({ length: t.rating }).map((_, j) => (
+                      <Star key={j} className="w-4 h-4 fill-accent text-accent" />
+                    ))}
+                  </div>
+                </div>
+              </div>
             </AnimateOnScroll>
-            <AnimateOnScroll delay={300} className="aspect-[3/4] rounded-lg overflow-hidden">
-              <img src={kubbeh7} alt="מגש קובה" className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
-            </AnimateOnScroll>
-          </div>
+          ))}
         </div>
       </div>
     </section>

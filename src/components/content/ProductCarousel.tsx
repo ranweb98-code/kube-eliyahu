@@ -6,8 +6,6 @@ import {
 } from "@/components/ui/carousel";
 import { Card, CardContent } from "@/components/ui/card";
 import kubbeh1 from "@/assets/kubbeh-1.jpg";
-import kubbeh2 from "@/assets/kubbeh-2.jpg";
-import kubbeh3 from "@/assets/kubbeh-3.jpg";
 import kubbeh4 from "@/assets/kubbeh-4.jpg";
 import kubbeh5 from "@/assets/kubbeh-5.jpg";
 import kubbeh6 from "@/assets/kubbeh-6.jpg";
@@ -18,18 +16,17 @@ interface Product {
   id: number;
   name: string;
   description: string;
-  price: string;
   image: string;
   isNew?: boolean;
 }
 
 const products: Product[] = [
-  { id: 1, name: "קובה סלק", description: "במילוי בשר בקר", price: "₪45", image: kubbeh1 },
-  { id: 2, name: "קובה סיסקה", description: "מבשר מפורק", price: "₪50", image: kubbeh4, isNew: true },
-  { id: 3, name: "קובה חמוסטה", description: "במרק עגבניות", price: "₪45", image: kubbeh5 },
-  { id: 4, name: "קובה המוסט", description: "במרק לימון", price: "₪45", image: kubbeh6 },
-  { id: 5, name: "קובה ברשת", description: "קובה מטוגנת", price: "₪55", image: kubbeh7, isNew: true },
-  { id: 6, name: "מרק קובה", description: "מרק מוכן עם קובה", price: "₪60", image: kubbeh8 },
+  { id: 1, name: "קובה סלק", description: "במילוי בשר בקר", image: kubbeh1 },
+  { id: 2, name: "קובה סיסקה", description: "מבשר מפורק", image: kubbeh4, isNew: true },
+  { id: 3, name: "קובה חמוסטה", description: "במרק עגבניות", image: kubbeh5 },
+  { id: 4, name: "קובה המוסט", description: "במרק לימון", image: kubbeh6 },
+  { id: 5, name: "קובה ברשת", description: "קובה מטוגנת", image: kubbeh7, isNew: true },
+  { id: 6, name: "מרק קובה", description: "מרק מוכן עם קובה", image: kubbeh8 },
 ];
 
 const ProductCarousel = () => {
@@ -62,14 +59,9 @@ const ProductCarousel = () => {
                       )}
                     </div>
                     <div className="space-y-1">
-                      <div className="flex justify-between items-center">
-                        <h3 className="font-serif text-lg font-semibold text-foreground">
-                          {product.name}
-                        </h3>
-                        <p className="text-base font-bold text-primary">
-                          {product.price}
-                        </p>
-                      </div>
+                      <h3 className="font-serif text-lg font-semibold text-foreground">
+                        {product.name}
+                      </h3>
                       <p className="text-sm text-muted-foreground">
                         {product.description}
                       </p>

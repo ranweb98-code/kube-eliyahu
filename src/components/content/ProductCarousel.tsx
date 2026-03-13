@@ -4,9 +4,7 @@ import packSiska from "@/assets/pack-kubbeh-siska.png";
 import packNablusia from "@/assets/pack-kubbeh-nablusia.png";
 import packCigarSiska from "@/assets/pack-cigar-siska.png";
 import packCigarMoroccan from "@/assets/pack-cigar-moroccan.png";
-import kubbeh3 from "@/assets/kubbeh-3.jpg";
-import kubbeh5 from "@/assets/kubbeh-5.jpg";
-import kubbeh7 from "@/assets/kubbeh-7.jpg";
+
 
 interface Product {
   id: number;
@@ -22,9 +20,6 @@ const products: Product[] = [
   { id: 3, name: "קובה נבלוסיה", description: "במרק עגבניות", image: packNablusia },
   { id: 4, name: "סיגר סיסקה", description: "סיגר במילוי בשר", image: packCigarSiska },
   { id: 5, name: "סיגר מרוקאי", description: "סיגר מסורתי", image: packCigarMoroccan, isNew: true },
-  { id: 6, name: "קובה חמוסטה", description: "במרק עגבניות חמצמץ", image: kubbeh3 },
-  { id: 7, name: "קובה מטוגנת", description: "פריכה ועשירה", image: kubbeh5 },
-  { id: 8, name: "מגש קובה", description: "מגש מעורב לאירועים", image: kubbeh7 },
 ];
 
 const ProductCarousel = () => {

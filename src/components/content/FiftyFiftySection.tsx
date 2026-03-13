@@ -1,5 +1,5 @@
 import AnimateOnScroll from "@/components/AnimateOnScroll";
-import kubbeh2 from "@/assets/kubbeh-2.jpg";
+import fiftyFiftyImage from "@/assets/fifty-fifty-image.jpg";
 import kubbeh3 from "@/assets/kubbeh-3.jpg";
 
 const FiftyFiftySection = () => {
@@ -20,7 +20,7 @@ const FiftyFiftySection = () => {
             <div className="group">
               <div className="w-full aspect-[4/3] mb-4 overflow-hidden rounded-lg">
                 <img
-                  src={kubbeh2}
+                  src={fiftyFiftyImage}
                   alt="קובה סלק במילוי בשר בקר"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />

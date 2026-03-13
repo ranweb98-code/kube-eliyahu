@@ -64,7 +64,7 @@ const ProductCarousel = () => {
                   </div>
                 )}
               </div>
-              <div className="space-y-1">
+              <div className="space-y-1" dir="rtl">
                 <h3 className="font-serif text-base font-semibold text-foreground">
                   {product.name}
                 </h3>

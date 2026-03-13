@@ -13,29 +13,32 @@ const LargeHero = () => {
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-black/30" />
         
         <div className="absolute bottom-0 right-0 left-0 p-6 md:p-12 text-white">
-          <h1 
-            className="text-5xl md:text-7xl lg:text-8xl font-black mb-2 leading-none tracking-tight animate-fade-in"
-            style={{ 
-              animationDelay: "300ms", 
-              animationFillMode: "both",
-              fontFamily: "'Rubik', sans-serif",
-              textShadow: "0 4px 30px rgba(0,0,0,0.5)",
-            }}
-          >
-            <span className="text-accent">קובה</span>{" "}
-            <span className="text-white">אליהו</span>
+          <h1 className="text-5xl md:text-7xl lg:text-8xl font-black mb-2 leading-none tracking-tight overflow-hidden">
+            <span 
+              className="inline-block text-accent animate-hero-slide-up"
+              style={{ fontFamily: "'Rubik', sans-serif", textShadow: "0 4px 30px rgba(0,0,0,0.5)" }}
+            >
+              קובה
+            </span>{" "}
+            <span 
+              className="inline-block text-white animate-hero-slide-up"
+              style={{ animationDelay: "200ms", fontFamily: "'Rubik', sans-serif", textShadow: "0 4px 30px rgba(0,0,0,0.5)" }}
+            >
+              אליהו
+            </span>
           </h1>
-          <p 
-            className="text-xl md:text-3xl font-light mb-6 tracking-wide animate-fade-in"
-            style={{ 
-              animationDelay: "500ms", 
-              animationFillMode: "both",
-              color: "hsl(var(--accent))",
-              textShadow: "0 2px 20px rgba(0,0,0,0.4)",
-            }}
-          >
-            טעמים מבית סבתא
-          </p>
+          <div className="overflow-hidden">
+            <p 
+              className="text-xl md:text-3xl font-light mb-6 tracking-wide animate-hero-slide-up"
+              style={{ 
+                animationDelay: "400ms",
+                color: "hsl(var(--accent))",
+                textShadow: "0 2px 20px rgba(0,0,0,0.4)",
+              }}
+            >
+              טעמים מבית סבתא
+            </p>
+          </div>
         </div>
       </div>
     </section>

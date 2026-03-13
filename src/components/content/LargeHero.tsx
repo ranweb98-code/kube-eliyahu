@@ -1,5 +1,4 @@
 import heroImage from "@/assets/kubbeh-1.jpg";
-import logoImg from "@/assets/logo.jpg";
 
 const LargeHero = () => {
   return (
@@ -13,13 +12,17 @@ const LargeHero = () => {
         
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-black/30" />
         
-        <div className="absolute bottom-0 right-0 left-0 p-6 md:p-12 flex flex-col items-end">
-          <div className="overflow-hidden mb-3 animate-hero-slide-up">
-            <img 
-              src={logoImg} 
-              alt="קובה אליהו" 
-              className="h-24 md:h-32 lg:h-40 w-auto rounded-full drop-shadow-[0_4px_30px_rgba(0,0,0,0.5)]"
-            />
+        <div className="absolute bottom-0 right-0 left-0 p-6 md:p-12 flex flex-col items-end text-right">
+          <div className="overflow-hidden">
+            <h1 
+              className="font-serif text-5xl md:text-7xl lg:text-8xl font-black leading-tight animate-hero-slide-up"
+              style={{ 
+                color: "hsl(var(--accent))",
+                textShadow: "0 4px 30px rgba(0,0,0,0.5)",
+              }}
+            >
+              קובה אליהו
+            </h1>
           </div>
           <div className="overflow-hidden">
             <p 

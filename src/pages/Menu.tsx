@@ -21,8 +21,8 @@ interface MenuItem {
 }
 
 const menuItems: MenuItem[] = [
-  { id: 1, name: "קובה סלק", description: "קובה למרק במילוי בשר בקר טרי, מוגשת עם סלק אדום.", image: kubbeh1 },
-  { id: 2, name: "קובה סיסקה", description: "קובה סיסקה למרק מבשר מפורק עשיר.", image: kubbeh2, isNew: true },
+  { id: 1, name: "קובה סלק", description: "קובה למרק במילוי בשר בקר טרי, מוגשת עם סלק אדום.", image: kubbehSelek },
+  { id: 2, name: "קובה חמוסטה", description: "קובה במרק עגבניות חמצמץ מסורתי.", image: kubbeh2, isNew: true },
   { id: 3, name: "קובה חמוסטה", description: "קובה במרק עגבניות חמצמץ מסורתי.", image: kubbeh3 },
   { id: 4, name: "קובה המוסט", description: "קובה במרק לימון מרענן עם עשבי תיבול.", image: kubbeh4 },
   { id: 5, name: "קובה מטוגנת", description: "קובה פריכה מטוגנת במילוי בשר עשיר.", image: kubbeh5, isNew: true },

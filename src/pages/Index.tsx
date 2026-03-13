@@ -14,7 +14,7 @@ const Index = () => {
       <main>
         <LargeHero />
         <FiftyFiftySection />
-        <ProductCarousel />
+        
         <OneThirdTwoThirdsSection />
         <EditorialSection />
       </main>

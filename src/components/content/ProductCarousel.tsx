@@ -5,8 +5,6 @@ import packNablusia from "@/assets/pack-kubbeh-nablusia.png";
 import packCigarSiska from "@/assets/pack-cigar-siska.png";
 import packCigarMoroccan from "@/assets/pack-cigar-moroccan.png";
 import kubbeh3 from "@/assets/kubbeh-3.jpg";
-import kubbeh5 from "@/assets/kubbeh-5.jpg";
-import kubbeh7 from "@/assets/kubbeh-7.jpg";
 
 interface Product {
   id: number;

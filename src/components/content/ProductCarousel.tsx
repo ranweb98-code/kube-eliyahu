@@ -29,49 +29,45 @@ const products: Product[] = [
 ];
 
 const ProductCarousel = () => {
-  const scrollRef = useRef<HTMLDivElement>(null);
-  const animationRef = useRef<number>();
+  const trackRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const container = scrollRef.current;
-    if (!container) return;
+    const track = trackRef.current;
+    if (!track) return;
 
-    let scrollPos = 0;
-    const speed = 0.5;
-    let isPaused = false;
+    let pos = 0;
+    let paused = false;
+    let raf: number;
 
-    const animate = () => {
-      if (!isPaused && container) {
-        scrollPos += speed;
-        const maxScroll = container.scrollWidth / 2;
-        if (scrollPos >= maxScroll) {
-          scrollPos = 0;
-        }
-        container.scrollLeft = scrollPos;
+    const step = () => {
+      if (!paused) {
+        pos += 0.5;
+        if (pos >= track.scrollWidth / 2) pos = 0;
+        track.style.transform = `translateX(-${pos}px)`;
       }
-      animationRef.current = requestAnimationFrame(animate);
+      raf = requestAnimationFrame(step);
     };
 
-    const handleEnter = () => { isPaused = true; };
-    const handleLeave = () => { isPaused = false; };
+    const pause = () => { paused = true; };
+    const resume = () => { paused = false; };
 
-    container.addEventListener("mouseenter", handleEnter);
-    container.addEventListener("mouseleave", handleLeave);
-    container.addEventListener("touchstart", handleEnter);
-    container.addEventListener("touchend", handleLeave);
+    track.parentElement?.addEventListener("mouseenter", pause);
+    track.parentElement?.addEventListener("mouseleave", resume);
+    track.parentElement?.addEventListener("touchstart", pause);
+    track.parentElement?.addEventListener("touchend", resume);
 
-    animationRef.current = requestAnimationFrame(animate);
+    raf = requestAnimationFrame(step);
 
     return () => {
-      if (animationRef.current) cancelAnimationFrame(animationRef.current);
-      container.removeEventListener("mouseenter", handleEnter);
-      container.removeEventListener("mouseleave", handleLeave);
-      container.removeEventListener("touchstart", handleEnter);
-      container.removeEventListener("touchend", handleLeave);
+      cancelAnimationFrame(raf);
+      track.parentElement?.removeEventListener("mouseenter", pause);
+      track.parentElement?.removeEventListener("mouseleave", resume);
+      track.parentElement?.removeEventListener("touchstart", pause);
+      track.parentElement?.removeEventListener("touchend", resume);
     };
   }, []);
 
-  const doubledProducts = [...products, ...products];
+  const allItems = [...products, ...products];
 
   return (
     <section className="w-full py-12 px-6">
@@ -83,38 +79,36 @@ const ProductCarousel = () => {
         </div>
       </AnimateOnScroll>
       <AnimateOnScroll delay={150}>
-        <div
-          ref={scrollRef}
-          className="flex gap-4 overflow-hidden max-w-5xl mx-auto"
-          style={{ scrollBehavior: "auto" }}
-        >
-          {doubledProducts.map((product, i) => (
-            <div
-              key={`${product.id}-${i}`}
-              className="flex-shrink-0 w-[65%] sm:w-[45%] md:w-[30%] group cursor-pointer"
-            >
-              <div className="aspect-square mb-3 overflow-hidden rounded-lg bg-muted/10 relative">
-                <img
-                  src={product.image}
-                  alt={product.name}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                />
-                {product.isNew && (
-                  <div className="absolute top-3 right-3 bg-accent text-accent-foreground px-3 py-1 rounded-full text-xs font-bold">
-                    חדש!
-                  </div>
-                )}
+        <div className="max-w-5xl mx-auto overflow-hidden">
+          <div ref={trackRef} className="flex gap-5 will-change-transform" style={{ width: "max-content" }}>
+            {allItems.map((product, i) => (
+              <div
+                key={`${product.id}-${i}`}
+                className="w-[180px] sm:w-[220px] md:w-[260px] flex-shrink-0 group cursor-pointer"
+              >
+                <div className="aspect-[4/5] mb-3 overflow-hidden rounded-lg bg-muted/10 relative">
+                  <img
+                    src={product.image}
+                    alt={product.name}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                  {product.isNew && (
+                    <div className="absolute top-3 right-3 bg-accent text-accent-foreground px-3 py-1 rounded-full text-xs font-bold">
+                      חדש!
+                    </div>
+                  )}
+                </div>
+                <div className="space-y-1">
+                  <h3 className="font-serif text-base font-semibold text-foreground">
+                    {product.name}
+                  </h3>
+                  <p className="text-sm text-muted-foreground">
+                    {product.description}
+                  </p>
+                </div>
               </div>
-              <div className="space-y-1">
-                <h3 className="font-serif text-lg font-semibold text-foreground">
-                  {product.name}
-                </h3>
-                <p className="text-sm text-muted-foreground">
-                  {product.description}
-                </p>
-              </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </AnimateOnScroll>
     </section>

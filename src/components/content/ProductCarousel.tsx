@@ -35,36 +35,9 @@ const ProductCarousel = () => {
     const track = trackRef.current;
     if (!track) return;
 
-    let pos = 0;
-    let paused = false;
-    let raf: number;
-
-    const step = () => {
-      if (!paused) {
-        pos += 0.5;
-        if (pos >= track.scrollWidth / 2) pos = 0;
-        track.style.transform = `translateX(-${pos}px)`;
-      }
-      raf = requestAnimationFrame(step);
-    };
-
-    const pause = () => { paused = true; };
-    const resume = () => { paused = false; };
-
-    track.parentElement?.addEventListener("mouseenter", pause);
-    track.parentElement?.addEventListener("mouseleave", resume);
-    track.parentElement?.addEventListener("touchstart", pause);
-    track.parentElement?.addEventListener("touchend", resume);
-
-    raf = requestAnimationFrame(step);
-
-    return () => {
-      cancelAnimationFrame(raf);
-      track.parentElement?.removeEventListener("mouseenter", pause);
-      track.parentElement?.removeEventListener("mouseleave", resume);
-      track.parentElement?.removeEventListener("touchstart", pause);
-      track.parentElement?.removeEventListener("touchend", resume);
-    };
+    // Use CSS animation approach for smooth infinite scroll
+    const totalWidth = track.scrollWidth / 2;
+    track.style.setProperty("--scroll-width", `${totalWidth}px`);
   }, []);
 
   const allItems = [...products, ...products];
@@ -78,39 +51,41 @@ const ProductCarousel = () => {
           </h2>
         </div>
       </AnimateOnScroll>
-      <AnimateOnScroll delay={150}>
-        <div className="max-w-5xl mx-auto overflow-hidden">
-          <div ref={trackRef} className="flex gap-5 will-change-transform" style={{ width: "max-content" }}>
-            {allItems.map((product, i) => (
-              <div
-                key={`${product.id}-${i}`}
-                className="w-[180px] sm:w-[220px] md:w-[260px] flex-shrink-0 group cursor-pointer"
-              >
-                <div className="aspect-[4/5] mb-3 overflow-hidden rounded-lg bg-muted/10 relative">
-                  <img
-                    src={product.image}
-                    alt={product.name}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
-                  {product.isNew && (
-                    <div className="absolute top-3 right-3 bg-accent text-accent-foreground px-3 py-1 rounded-full text-xs font-bold">
-                      חדש!
-                    </div>
-                  )}
-                </div>
-                <div className="space-y-1">
-                  <h3 className="font-serif text-base font-semibold text-foreground">
-                    {product.name}
-                  </h3>
-                  <p className="text-sm text-muted-foreground">
-                    {product.description}
-                  </p>
-                </div>
+      <div className="max-w-5xl mx-auto overflow-hidden">
+        <div
+          ref={trackRef}
+          className="flex gap-5 animate-marquee"
+          style={{ width: "max-content" }}
+        >
+          {allItems.map((product, i) => (
+            <div
+              key={`${product.id}-${i}`}
+              className="w-[180px] sm:w-[220px] md:w-[260px] flex-shrink-0 group cursor-pointer"
+            >
+              <div className="aspect-[4/5] mb-3 overflow-hidden rounded-lg bg-muted/10 relative">
+                <img
+                  src={product.image}
+                  alt={product.name}
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+                {product.isNew && (
+                  <div className="absolute top-3 right-3 bg-accent text-accent-foreground px-3 py-1 rounded-full text-xs font-bold">
+                    חדש!
+                  </div>
+                )}
               </div>
-            ))}
-          </div>
+              <div className="space-y-1">
+                <h3 className="font-serif text-base font-semibold text-foreground">
+                  {product.name}
+                </h3>
+                <p className="text-sm text-muted-foreground">
+                  {product.description}
+                </p>
+              </div>
+            </div>
+          ))}
         </div>
-      </AnimateOnScroll>
+      </div>
     </section>
   );
 };

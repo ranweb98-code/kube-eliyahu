@@ -3,7 +3,7 @@ import Footer from "../components/footer/Footer";
 import AnimateOnScroll from "@/components/AnimateOnScroll";
 import { Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import kubbeh1 from "@/assets/kubbeh-1.jpg";
+import kubbehSelek from "@/assets/kubbeh-selek.jpg";
 import kubbeh2 from "@/assets/kubbeh-2.jpg";
 import kubbeh3 from "@/assets/kubbeh-3.jpg";
 import kubbeh4 from "@/assets/kubbeh-4.jpg";

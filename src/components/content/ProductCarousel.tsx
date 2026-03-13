@@ -1,4 +1,3 @@
-import { useEffect, useRef } from "react";
 import AnimateOnScroll from "@/components/AnimateOnScroll";
 import packSelek from "@/assets/pack-kubbeh-selek.png";
 import packSiska from "@/assets/pack-kubbeh-siska.png";
@@ -29,18 +28,8 @@ const products: Product[] = [
 ];
 
 const ProductCarousel = () => {
-  const trackRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const track = trackRef.current;
-    if (!track) return;
-
-    // Use CSS animation approach for smooth infinite scroll
-    const totalWidth = track.scrollWidth / 2;
-    track.style.setProperty("--scroll-width", `${totalWidth}px`);
-  }, []);
-
-  const allItems = [...products, ...products];
+  // Triple the items for seamless infinite loop
+  const allItems = [...products, ...products, ...products];
 
   return (
     <section className="w-full py-12 px-6">
@@ -51,18 +40,20 @@ const ProductCarousel = () => {
           </h2>
         </div>
       </AnimateOnScroll>
-      <div className="max-w-5xl mx-auto overflow-hidden">
+      <div className="w-full overflow-hidden">
         <div
-          ref={trackRef}
-          className="flex gap-5 animate-marquee"
-          style={{ width: "max-content" }}
+          className="flex gap-5"
+          style={{
+            width: "max-content",
+            animation: "marquee 40s linear infinite",
+          }}
         >
           {allItems.map((product, i) => (
             <div
               key={`${product.id}-${i}`}
-              className="w-[180px] sm:w-[220px] md:w-[260px] flex-shrink-0 group cursor-pointer"
+              className="w-[160px] sm:w-[190px] md:w-[220px] flex-shrink-0 group cursor-pointer"
             >
-              <div className="aspect-[4/5] mb-3 overflow-hidden rounded-lg bg-muted/10 relative">
+              <div className="aspect-square mb-3 overflow-hidden rounded-lg bg-muted/10 relative">
                 <img
                   src={product.image}
                   alt={product.name}

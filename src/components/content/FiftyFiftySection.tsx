@@ -20,7 +20,7 @@ const FiftyFiftySection = () => {
             <div className="group">
               <div className="w-full aspect-[4/3] mb-4 overflow-hidden rounded-lg">
                 <img
-                  src={kubbeh2}
+                  src={fiftyFiftyImage}
                   alt="קובה סלק במילוי בשר בקר"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />

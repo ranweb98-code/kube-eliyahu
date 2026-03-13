@@ -1,16 +1,13 @@
+import { useEffect, useRef } from "react";
 import AnimateOnScroll from "@/components/AnimateOnScroll";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-} from "@/components/ui/carousel";
-import { Card, CardContent } from "@/components/ui/card";
-import kubbeh1 from "@/assets/kubbeh-1.jpg";
-import kubbeh4 from "@/assets/kubbeh-4.jpg";
+import packSelek from "@/assets/pack-kubbeh-selek.png";
+import packSiska from "@/assets/pack-kubbeh-siska.png";
+import packNablusia from "@/assets/pack-kubbeh-nablusia.png";
+import packCigarSiska from "@/assets/pack-cigar-siska.png";
+import packCigarMoroccan from "@/assets/pack-cigar-moroccan.png";
+import kubbeh3 from "@/assets/kubbeh-3.jpg";
 import kubbeh5 from "@/assets/kubbeh-5.jpg";
-import kubbeh6 from "@/assets/kubbeh-6.jpg";
 import kubbeh7 from "@/assets/kubbeh-7.jpg";
-import kubbeh8 from "@/assets/kubbeh-8.jpg";
 
 interface Product {
   id: number;
@@ -21,15 +18,61 @@ interface Product {
 }
 
 const products: Product[] = [
-  { id: 1, name: "קובה סלק", description: "במילוי בשר בקר", image: kubbeh1 },
-  { id: 2, name: "קובה סיסקה", description: "מבשר מפורק", image: kubbeh4, isNew: true },
-  { id: 3, name: "קובה חמוסטה", description: "במרק עגבניות", image: kubbeh5 },
-  { id: 4, name: "קובה המוסט", description: "במרק לימון", image: kubbeh6 },
-  { id: 5, name: "קובה ברשת", description: "קובה מטוגנת", image: kubbeh7, isNew: true },
-  { id: 6, name: "מרק קובה", description: "מרק מוכן עם קובה", image: kubbeh8 },
+  { id: 1, name: "קובה סלק", description: "במילוי בשר בקר", image: packSelek },
+  { id: 2, name: "קובה סיסקה", description: "מבשר מפורק", image: packSiska, isNew: true },
+  { id: 3, name: "קובה נבלוסיה", description: "במרק עגבניות", image: packNablusia },
+  { id: 4, name: "סיגר סיסקה", description: "סיגר במילוי בשר", image: packCigarSiska },
+  { id: 5, name: "סיגר מרוקאי", description: "סיגר מסורתי", image: packCigarMoroccan, isNew: true },
+  { id: 6, name: "קובה חמוסטה", description: "במרק עגבניות חמצמץ", image: kubbeh3 },
+  { id: 7, name: "קובה מטוגנת", description: "פריכה ועשירה", image: kubbeh5 },
+  { id: 8, name: "מגש קובה", description: "מגש מעורב לאירועים", image: kubbeh7 },
 ];
 
 const ProductCarousel = () => {
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const animationRef = useRef<number>();
+
+  useEffect(() => {
+    const container = scrollRef.current;
+    if (!container) return;
+
+    let scrollPos = 0;
+    const speed = 0.5;
+    let isPaused = false;
+
+    const animate = () => {
+      if (!isPaused && container) {
+        scrollPos += speed;
+        const maxScroll = container.scrollWidth / 2;
+        if (scrollPos >= maxScroll) {
+          scrollPos = 0;
+        }
+        container.scrollLeft = scrollPos;
+      }
+      animationRef.current = requestAnimationFrame(animate);
+    };
+
+    const handleEnter = () => { isPaused = true; };
+    const handleLeave = () => { isPaused = false; };
+
+    container.addEventListener("mouseenter", handleEnter);
+    container.addEventListener("mouseleave", handleLeave);
+    container.addEventListener("touchstart", handleEnter);
+    container.addEventListener("touchend", handleLeave);
+
+    animationRef.current = requestAnimationFrame(animate);
+
+    return () => {
+      if (animationRef.current) cancelAnimationFrame(animationRef.current);
+      container.removeEventListener("mouseenter", handleEnter);
+      container.removeEventListener("mouseleave", handleLeave);
+      container.removeEventListener("touchstart", handleEnter);
+      container.removeEventListener("touchend", handleLeave);
+    };
+  }, []);
+
+  const doubledProducts = [...products, ...products];
+
   return (
     <section className="w-full py-12 px-6">
       <AnimateOnScroll>
@@ -40,38 +83,39 @@ const ProductCarousel = () => {
         </div>
       </AnimateOnScroll>
       <AnimateOnScroll delay={150}>
-        <Carousel opts={{ align: "start", loop: false }} className="w-full max-w-5xl mx-auto">
-          <CarouselContent>
-            {products.map((product) => (
-              <CarouselItem key={product.id} className="basis-[75%] sm:basis-1/2 md:basis-1/3 pl-4">
-                <Card className="border-none shadow-none bg-transparent group cursor-pointer">
-                  <CardContent className="p-0">
-                    <div className="aspect-square mb-3 overflow-hidden rounded-lg bg-muted/10 relative">
-                      <img
-                        src={product.image}
-                        alt={product.name}
-                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                      />
-                      {product.isNew && (
-                        <div className="absolute top-3 right-3 bg-accent text-accent-foreground px-3 py-1 rounded-full text-xs font-bold">
-                          חדש!
-                        </div>
-                      )}
-                    </div>
-                    <div className="space-y-1">
-                      <h3 className="font-serif text-lg font-semibold text-foreground">
-                        {product.name}
-                      </h3>
-                      <p className="text-sm text-muted-foreground">
-                        {product.description}
-                      </p>
-                    </div>
-                  </CardContent>
-                </Card>
-              </CarouselItem>
-            ))}
-          </CarouselContent>
-        </Carousel>
+        <div
+          ref={scrollRef}
+          className="flex gap-4 overflow-hidden max-w-5xl mx-auto"
+          style={{ scrollBehavior: "auto" }}
+        >
+          {doubledProducts.map((product, i) => (
+            <div
+              key={`${product.id}-${i}`}
+              className="flex-shrink-0 w-[65%] sm:w-[45%] md:w-[30%] group cursor-pointer"
+            >
+              <div className="aspect-square mb-3 overflow-hidden rounded-lg bg-muted/10 relative">
+                <img
+                  src={product.image}
+                  alt={product.name}
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                />
+                {product.isNew && (
+                  <div className="absolute top-3 right-3 bg-accent text-accent-foreground px-3 py-1 rounded-full text-xs font-bold">
+                    חדש!
+                  </div>
+                )}
+              </div>
+              <div className="space-y-1">
+                <h3 className="font-serif text-lg font-semibold text-foreground">
+                  {product.name}
+                </h3>
+                <p className="text-sm text-muted-foreground">
+                  {product.description}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
       </AnimateOnScroll>
     </section>
   );

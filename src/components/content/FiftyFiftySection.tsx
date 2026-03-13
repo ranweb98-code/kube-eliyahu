@@ -1,5 +1,5 @@
 import AnimateOnScroll from "@/components/AnimateOnScroll";
-import kubbeh2 from "@/assets/kubbeh-2.jpg";
+import fiftyFiftyImage from "@/assets/fifty-fifty-image.jpg";
 import kubbeh3 from "@/assets/kubbeh-3.jpg";
 
 const FiftyFiftySection = () => {

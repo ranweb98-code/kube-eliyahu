@@ -1,5 +1,5 @@
 import heroImage from "@/assets/kubbeh-1.jpg";
-import logoSvg from "@/assets/LINEA.svg";
+import logoImg from "@/assets/logo.jpg";
 
 const LargeHero = () => {
   return (
@@ -16,9 +16,9 @@ const LargeHero = () => {
         <div className="absolute bottom-0 right-0 left-0 p-6 md:p-12 flex flex-col items-end">
           <div className="overflow-hidden mb-3 animate-hero-slide-up">
             <img 
-              src={logoSvg} 
+              src={logoImg} 
               alt="קובה אליהו" 
-              className="h-12 md:h-16 lg:h-20 w-auto invert brightness-200 drop-shadow-[0_4px_30px_rgba(0,0,0,0.5)]"
+              className="h-24 md:h-32 lg:h-40 w-auto rounded-full drop-shadow-[0_4px_30px_rgba(0,0,0,0.5)]"
             />
           </div>
           <div className="overflow-hidden">

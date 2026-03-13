@@ -23,6 +23,7 @@ const Navigation = () => {
   const navItems = [
     { name: "ראשי", href: "/" },
     { name: "התפריט", href: "/menu" },
+    { name: "המוצרים", href: "/products" },
     { name: "אודות", href: "/about" },
     { name: "צור קשר", href: "/contact" },
   ];

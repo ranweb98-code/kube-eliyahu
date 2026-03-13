@@ -1,5 +1,6 @@
 import Header from "../components/header/Header";
 import Footer from "../components/footer/Footer";
+import AnimateOnScroll from "@/components/AnimateOnScroll";
 import { Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import kubbeh1 from "@/assets/kubbeh-1.jpg";
@@ -15,21 +16,19 @@ interface MenuItem {
   id: number;
   name: string;
   description: string;
-  weight: string;
-  price: string;
   image: string;
   isNew?: boolean;
 }
 
 const menuItems: MenuItem[] = [
-  { id: 1, name: "קובה סלק", description: "קובה למרק במילוי בשר בקר טרי, מוגשת עם סלק אדום. משקל נטו 800 גרם.", weight: "800 גרם", price: "₪45", image: kubbeh1 },
-  { id: 2, name: "קובה סיסקה", description: "קובה סיסקה למרק מבשר מפורק עשיר. משקל נטו 800 גרם.", weight: "800 גרם", price: "₪50", image: kubbeh2, isNew: true },
-  { id: 3, name: "קובה חמוסטה", description: "קובה במרק עגבניות חמצמץ מסורתי.", weight: "800 גרם", price: "₪45", image: kubbeh3 },
-  { id: 4, name: "קובה המוסט", description: "קובה במרק לימון מרענן עם עשבי תיבול.", weight: "800 גרם", price: "₪45", image: kubbeh4 },
-  { id: 5, name: "קובה מטוגנת", description: "קובה פריכה מטוגנת במילוי בשר עשיר.", weight: "500 גרם", price: "₪55", image: kubbeh5, isNew: true },
-  { id: 6, name: "מרק קובה מוכן", description: "מרק ביתי מוכן עם קובה טרייה. רק לחמם ולהגיש.", weight: "1.2 ק״ג", price: "₪60", image: kubbeh6 },
-  { id: 7, name: "מגש קובה לאירועים", description: "מגש מעורב של קובה לאירועים ושבתות. מינימום 20 יחידות.", weight: "לפי הזמנה", price: "החל מ-₪120", image: kubbeh7 },
-  { id: 8, name: "קובה משפחתית", description: "חבילה משפחתית - 2 סוגי קובה לבחירה.", weight: "1.6 ק״ג", price: "₪85", image: kubbeh8 },
+  { id: 1, name: "קובה סלק", description: "קובה למרק במילוי בשר בקר טרי, מוגשת עם סלק אדום.", image: kubbeh1 },
+  { id: 2, name: "קובה סיסקה", description: "קובה סיסקה למרק מבשר מפורק עשיר.", image: kubbeh2, isNew: true },
+  { id: 3, name: "קובה חמוסטה", description: "קובה במרק עגבניות חמצמץ מסורתי.", image: kubbeh3 },
+  { id: 4, name: "קובה המוסט", description: "קובה במרק לימון מרענן עם עשבי תיבול.", image: kubbeh4 },
+  { id: 5, name: "קובה מטוגנת", description: "קובה פריכה מטוגנת במילוי בשר עשיר.", image: kubbeh5, isNew: true },
+  { id: 6, name: "מרק קובה מוכן", description: "מרק ביתי מוכן עם קובה טרייה. רק לחמם ולהגיש.", image: kubbeh6 },
+  { id: 7, name: "מגש קובה לאירועים", description: "מגש מעורב של קובה לאירועים ושבתות.", image: kubbeh7 },
+  { id: 8, name: "קובה משפחתית", description: "חבילה משפחתית - 2 סוגי קובה לבחירה.", image: kubbeh8 },
 ];
 
 const Menu = () => {
@@ -39,57 +38,59 @@ const Menu = () => {
       
       <main className="py-12 px-6">
         <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-12">
-            <h1 className="font-serif text-4xl md:text-5xl font-bold text-foreground mb-3">
-              התפריט שלנו
-            </h1>
-            <p className="text-muted-foreground text-lg">
-              כל הקובות מוכנות בעבודת יד, מחומרי גלם איכותיים. כשר בשרי.
-            </p>
-          </div>
+          <AnimateOnScroll>
+            <div className="text-center mb-12">
+              <h1 className="font-serif text-4xl md:text-5xl font-bold text-foreground mb-3">
+                התפריט שלנו
+              </h1>
+              <p className="text-muted-foreground text-lg">
+                כל הקובות מוכנות בעבודת יד, מחומרי גלם איכותיים. כשר בשרי.
+              </p>
+            </div>
+          </AnimateOnScroll>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
-            {menuItems.map((item) => (
-              <div key={item.id} className="bg-card rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow group">
-                <div className="aspect-square overflow-hidden relative">
-                  <img
-                    src={item.image}
-                    alt={item.name}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
-                  {item.isNew && (
-                    <div className="absolute top-3 right-3 bg-accent text-accent-foreground px-3 py-1 rounded-full text-xs font-bold">
-                      חדש!
-                    </div>
-                  )}
-                </div>
-                <div className="p-4 space-y-2">
-                  <div className="flex justify-between items-start">
-                    <h3 className="font-serif text-lg font-semibold text-foreground">{item.name}</h3>
-                    <span className="text-primary font-bold text-lg">{item.price}</span>
+            {menuItems.map((item, i) => (
+              <AnimateOnScroll key={item.id} delay={i * 100}>
+                <div className="bg-card rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow group">
+                  <div className="aspect-square overflow-hidden relative">
+                    <img
+                      src={item.image}
+                      alt={item.name}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                    {item.isNew && (
+                      <div className="absolute top-3 right-3 bg-accent text-accent-foreground px-3 py-1 rounded-full text-xs font-bold">
+                        חדש!
+                      </div>
+                    )}
                   </div>
-                  <p className="text-muted-foreground text-sm">{item.description}</p>
-                  <p className="text-xs text-muted-foreground/70">{item.weight}</p>
+                  <div className="p-4 space-y-2">
+                    <h3 className="font-serif text-lg font-semibold text-foreground">{item.name}</h3>
+                    <p className="text-muted-foreground text-sm">{item.description}</p>
+                  </div>
                 </div>
-              </div>
+              </AnimateOnScroll>
             ))}
           </div>
 
           {/* CTA */}
-          <div className="text-center bg-primary rounded-2xl p-8 md:p-12">
-            <h2 className="font-serif text-2xl md:text-3xl font-bold text-primary-foreground mb-3">
-              רוצים להזמין?
-            </h2>
-            <p className="text-primary-foreground/80 mb-6">
-              התקשרו אלינו ונשמח לעזור עם ההזמנה
-            </p>
-            <a href="tel:0509766643">
-              <Button className="bg-accent text-accent-foreground hover:bg-accent/90 rounded-full px-8 py-6 text-base font-medium gap-2">
-                <Phone className="w-5 h-5" />
-                050-976-6643
-              </Button>
-            </a>
-          </div>
+          <AnimateOnScroll>
+            <div className="text-center bg-primary rounded-2xl p-8 md:p-12">
+              <h2 className="font-serif text-2xl md:text-3xl font-bold text-primary-foreground mb-3">
+                רוצים להזמין?
+              </h2>
+              <p className="text-primary-foreground/80 mb-6">
+                התקשרו אלינו ונשמח לעזור עם ההזמנה
+              </p>
+              <a href="tel:0509766643">
+                <Button className="bg-accent text-accent-foreground hover:bg-accent/90 rounded-full px-8 py-6 text-base font-medium gap-2">
+                  <Phone className="w-5 h-5" />
+                  050-976-6643
+                </Button>
+              </a>
+            </div>
+          </AnimateOnScroll>
         </div>
       </main>
       

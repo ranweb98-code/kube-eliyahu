@@ -40,12 +40,11 @@ const ProductCarousel = () => {
           </h2>
         </div>
       </AnimateOnScroll>
-      <div className="w-full overflow-hidden">
+      <div className="w-full overflow-hidden" dir="ltr">
         <div
-          className="flex gap-5"
+          className="flex gap-5 animate-marquee"
           style={{
             width: "max-content",
-            animation: "marquee 40s linear infinite",
           }}
         >
           {allItems.map((product, i) => (

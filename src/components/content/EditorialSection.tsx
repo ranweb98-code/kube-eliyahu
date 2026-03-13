@@ -75,7 +75,7 @@ const EditorialSection = () => {
                 className="w-full h-full object-cover"
               />
             </div>
-            <div className="flex items-center justify-end gap-8">
+            <div className="flex items-center justify-center gap-8">
               <div className="text-center">
                 <CountUp target={100} suffix="%" />
                 <p className="text-sm text-muted-foreground mt-1">עבודת יד</p>

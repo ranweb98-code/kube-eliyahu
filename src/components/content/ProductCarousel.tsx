@@ -17,7 +17,7 @@ interface Product {
 const products: Product[] = [
   { id: 1, name: "קובה סלק", description: "במילוי בשר בקר", image: packSelek },
   { id: 2, name: "קובה סיסקה", description: "מבשר מפורק", image: packSiska, isNew: true },
-  { id: 3, name: "קובה נבלוסיה", description: "במרק עגבניות", image: packNablusia },
+  { id: 3, name: "קובה נבלוסיה", description: "\nמבשר בקר וצנוברים", image: packNablusia },
   { id: 4, name: "סיגר סיסקה", description: "סיגר במילוי בשר", image: packCigarSiska },
   { id: 5, name: "סיגר מרוקאי", description: "סיגר מסורתי", image: packCigarMoroccan, isNew: true },
 ];

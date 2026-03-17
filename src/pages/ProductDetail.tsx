@@ -7,8 +7,10 @@ import { Phone, ArrowRight, Clock, ChefHat, Flame } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import packSelek from "@/assets/pack-kubbeh-selek.png";
 import packSiska from "@/assets/pack-kubbeh-siska.png";
-import kubbehSelek from "@/assets/kubbeh-selek.jpg";
-import kubbeh1 from "@/assets/kubbeh-1.jpg";
+import siskaFront from "@/assets/kubeh-siska-front.jpg";
+import siskaBack from "@/assets/kubeh-siska-back.jpg";
+import selekFront from "@/assets/kubeh-selek-front.jpg";
+import selekBack from "@/assets/kubeh-selek-back.jpg";
 
 interface NutritionRow {
   label: string;

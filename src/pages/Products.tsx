@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Header from "../components/header/Header";
 import Footer from "../components/footer/Footer";
 import AnimateOnScroll from "@/components/AnimateOnScroll";
@@ -15,6 +16,7 @@ interface ProductItem {
   subtitle: string;
   description: string;
   image: string;
+  slug?: string;
 }
 
 const products: ProductItem[] = [
@@ -24,6 +26,7 @@ const products: ProductItem[] = [
     subtitle: "קובה סלק",
     description: "קובה למרק במילוי בשר בקר טרי, מוגשת עם סלק אדום עשיר. משקל נטו 800 גרם.",
     image: packSelek,
+    slug: "kubeh-selek",
   },
   {
     id: 2,
@@ -31,6 +34,7 @@ const products: ProductItem[] = [
     subtitle: "מבשר מפורק",
     description: "קובה סיסקה למרק מבשר מפורק עשיר בתיבול מסורתי. משקל נטו 800 גרם.",
     image: packSiska,
+    slug: "kubeh-siska",
   },
   {
     id: 3,
@@ -77,17 +81,37 @@ const Products = () => {
             {products.map((product, i) => (
               <AnimateOnScroll key={product.id} delay={i * 120}>
                 <div className="bg-card rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-500 group">
-                  <div className="aspect-[3/4] overflow-hidden bg-muted/5 p-4 flex items-center justify-center">
-                    <img
-                      src={product.image}
-                      alt={product.name}
-                      className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
-                    />
-                  </div>
+                  {product.slug ? (
+                    <Link to={`/products/${product.slug}`}>
+                      <div className="aspect-[3/4] overflow-hidden bg-muted/5 p-4 flex items-center justify-center">
+                        <img
+                          src={product.image}
+                          alt={product.name}
+                          className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
+                        />
+                      </div>
+                    </Link>
+                  ) : (
+                    <div className="aspect-[3/4] overflow-hidden bg-muted/5 p-4 flex items-center justify-center">
+                      <img
+                        src={product.image}
+                        alt={product.name}
+                        className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
+                      />
+                    </div>
+                  )}
                   <div className="p-5 space-y-2 text-center">
-                    <h3 className="font-serif text-xl font-bold text-foreground">
-                      {product.name}
-                    </h3>
+                    {product.slug ? (
+                      <Link to={`/products/${product.slug}`} className="hover:text-primary transition-colors">
+                        <h3 className="font-serif text-xl font-bold text-foreground">
+                          {product.name}
+                        </h3>
+                      </Link>
+                    ) : (
+                      <h3 className="font-serif text-xl font-bold text-foreground">
+                        {product.name}
+                      </h3>
+                    )}
                     <p className="text-primary font-semibold text-sm">
                       {product.subtitle}
                     </p>

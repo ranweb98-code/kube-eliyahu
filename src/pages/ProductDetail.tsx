@@ -1,77 +1,278 @@
-import { useParams } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import Header from "../components/header/Header";
 import Footer from "../components/footer/Footer";
-import ProductImageGallery from "../components/product/ProductImageGallery";
-import ProductInfo from "../components/product/ProductInfo";
-import ProductDescription from "../components/product/ProductDescription";
-import ProductCarousel from "../components/content/ProductCarousel";
-import { 
-  Breadcrumb, 
-  BreadcrumbItem, 
-  BreadcrumbLink, 
-  BreadcrumbList, 
-  BreadcrumbPage, 
-  BreadcrumbSeparator 
-} from "@/components/ui/breadcrumb";
+import AnimateOnScroll from "@/components/AnimateOnScroll";
+import { Phone, Download, ArrowRight, Clock, ChefHat, Flame } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import packSelek from "@/assets/pack-kubbeh-selek.png";
+import packSiska from "@/assets/pack-kubbeh-siska.png";
+
+interface NutritionRow {
+  label: string;
+  value: string;
+}
+
+interface ProductData {
+  slug: string;
+  name: string;
+  subtitle: string;
+  image: string;
+  weight: string;
+  pdfPath: string;
+  cookTime: string;
+  about: string;
+  ingredients: string[];
+  instructions: string[];
+  nutrition: NutritionRow[];
+  allergens: string;
+  mayContain: string;
+}
+
+const productsData: ProductData[] = [
+  {
+    slug: "kubeh-siska",
+    name: "קובה סיסקה למרק",
+    subtitle: "מבשר מפורק",
+    image: packSiska,
+    weight: "800 גרם",
+    pdfPath: "/pdfs/kubeh-siska.pdf",
+    cookTime: "~10 דקות",
+    about: "קובה אליהו הינו מאכל מסורתי הישר ממושב זכריה שבעמק האלה. הקובה בעל ניחוחות וטעמים מבית סבתא אוסנת. חוויה ייחודית של טעמים המעוררים געגועים לילדות מבית סבתא!",
+    ingredients: [
+      "1 בצל קצוץ",
+      "4 גבעולי מנגולד",
+      "חופן פטרוזיליה",
+      "דלעת מים / קישוא לפי עונה",
+      "2 כפיות פלפל שחור",
+      "2 כפיות מלח לפי טעם",
+      "לימון סחוט",
+    ],
+    instructions: [
+      "מטגנים בצל עד להשחמה.",
+      "מוסיפים את הגבעולים ודלעת, או קישוא, ומטגנים קלות לאחר מכן.",
+      "מוסיפים מים, מעט מעל גובה הירקות.",
+      "טוחנים בצד את העלים שנשארו.",
+      "מחכים לרתיחה, מוסיפים את העלים.",
+      "זורקים את הקובה, ומבשלים כ-10 דקות.",
+      "מוסיפים לימון לפי הטעם, וממתינים עוד 5 דקות.",
+    ],
+    nutrition: [
+      { label: "אנרגיה (קלוריות)", value: "377" },
+      { label: "סך השומנים (גרם)", value: "20.7" },
+      { label: "חומצות שומן רוויות (גרם)", value: "7.3" },
+      { label: "חומצות שומן טראנס (גרם)", value: "פחות מ-0.7" },
+      { label: 'כולסטרול (מ"ג)', value: "57" },
+      { label: 'נתרן (מ"ג)', value: "795" },
+      { label: "סך הפחמימות (גרם)", value: "29.2" },
+      { label: "סוכרים (גרם)", value: "2.6" },
+      { label: "כפית סוכר", value: "0.75" },
+      { label: "סיבים תזונתיים (גרם)", value: "3.0" },
+      { label: "חלבונים (גרם)", value: "17.0" },
+    ],
+    allergens: "חיטה-גלוטן, סלרי",
+    mayContain: "סויה, צנוברים, שומשום, שעורה-גלוטן",
+  },
+  {
+    slug: "kubeh-selek",
+    name: "קובה למרק סלק",
+    subtitle: "במילוי בשר בקר",
+    image: packSelek,
+    weight: "800 גרם",
+    pdfPath: "/pdfs/kubeh-selek.pdf",
+    cookTime: "~10 דקות",
+    about: "קובה אליהו הינו מאכל מסורתי הישר ממושב זכריה שבעמק האלה. הקובה בעל ניחוחות וטעמים מבית סבתא אוסנת. חוויה ייחודית של טעמים המעוררים געגועים לילדות מבית סבתא!",
+    ingredients: [
+      "1 בצל קצוץ",
+      "4 סלקים קלופים חתוכים לרצועות",
+      "1 בטטה",
+      "3 גבעולי סלרי/מנגולד (אפשר להוסיף גם וגם)",
+      "כף רסק עגבניות",
+      "כפית פלפל שחור",
+      "שלוש כפות סוכר",
+      "כפית וחצי מלח (לפי הטעם)",
+      "לימון סחוט",
+    ],
+    instructions: [
+      "מטגנים בצל להשחמה, מוסיפים את הסלקים החתוכים וממלאים כ-2 ליטר מים רותחים.",
+      "(חשוב להשאיר מקום בסיר ולא למלא עד הסוף)",
+      "מוסיפים את התבלינים, לאחר רבע שעה מוסיפים את הבטטה והעלי ירק הטחופים.",
+      "כשהמרק מבעבע זורקים את הקובה ומבשלים כ-10 דקות, מכבים את הגז.",
+      "מוסיפים לימון סחוט לפי הטעם וממתינים עוד כ-5 דקות... ובתיאבון!",
+    ],
+    nutrition: [
+      { label: "אנרגיה (קלוריות)", value: "328" },
+      { label: "סך השומנים (גרם)", value: "17.0" },
+      { label: "חומצות שומן רוויות (גרם)", value: "5.8" },
+      { label: "חומצות שומן טראנס (גרם)", value: "פחות מ-0.5" },
+      { label: 'כולסטרול (מ"ג)', value: "43" },
+      { label: 'נתרן (מ"ג)', value: "601" },
+      { label: "סך הפחמימות (גרם)", value: "28.2" },
+      { label: "סוכרים (גרם)", value: "1.9" },
+      { label: "כפית סוכר", value: "0.75" },
+      { label: "סיבים תזונתיים (גרם)", value: "2.8" },
+      { label: "חלבונים (גרם)", value: "14.1" },
+    ],
+    allergens: "חיטה-גלוטן",
+    mayContain: "סלרי, סויה, צנוברים, שומשום, שעורה-גלוטן",
+  },
+];
 
 const ProductDetail = () => {
-  const { productId } = useParams();
+  const { slug } = useParams<{ slug: string }>();
+  const product = productsData.find((p) => p.slug === slug);
+
+  if (!product) {
+    return (
+      <div className="min-h-screen bg-background">
+        <Header />
+        <main className="py-24 px-6 text-center">
+          <h1 className="font-serif text-3xl font-bold text-foreground mb-4">מוצר לא נמצא</h1>
+          <Link to="/products">
+            <Button variant="outline" className="gap-2">
+              חזרה למוצרים
+              <ArrowRight className="w-4 h-4" />
+            </Button>
+          </Link>
+        </main>
+        <Footer />
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-background">
       <Header />
-      
-      <main className="pt-6">
-        <section className="w-full px-6">
-          {/* Breadcrumb - Show above image on smaller screens */}
-          <div className="lg:hidden mb-6">
-            <Breadcrumb>
-              <BreadcrumbList>
-                <BreadcrumbItem>
-                  <BreadcrumbLink asChild>
-                    <Link to="/">Home</Link>
-                  </BreadcrumbLink>
-                </BreadcrumbItem>
-                <BreadcrumbSeparator />
-                <BreadcrumbItem>
-                  <BreadcrumbLink asChild>
-                    <Link to="/category/earrings">Earrings</Link>
-                  </BreadcrumbLink>
-                </BreadcrumbItem>
-                <BreadcrumbSeparator />
-                <BreadcrumbItem>
-                  <BreadcrumbPage>Pantheon</BreadcrumbPage>
-                </BreadcrumbItem>
-              </BreadcrumbList>
-            </Breadcrumb>
-          </div>
-          
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
-            <ProductImageGallery />
-            
-            <div className="lg:pl-12 mt-8 lg:mt-0 lg:sticky lg:top-6 lg:h-fit">
-              <ProductInfo />
-              <ProductDescription />
+
+      <main className="py-12 px-6">
+        <div className="max-w-5xl mx-auto">
+          {/* Breadcrumb */}
+          <AnimateOnScroll>
+            <div className="mb-8 pt-16">
+              <Link to="/products" className="text-sm text-muted-foreground hover:text-primary transition-colors inline-flex items-center gap-1">
+                <ArrowRight className="w-3 h-3" />
+                חזרה למוצרים
+              </Link>
             </div>
+          </AnimateOnScroll>
+
+          {/* Hero */}
+          <AnimateOnScroll>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center mb-16">
+              <div className="bg-muted/5 rounded-2xl p-8 flex items-center justify-center">
+                <img src={product.image} alt={product.name} className="w-full max-w-sm object-contain" />
+              </div>
+              <div className="space-y-4">
+                <h1 className="font-serif text-3xl md:text-4xl font-bold text-foreground">{product.name}</h1>
+                <p className="text-primary font-semibold text-lg">{product.subtitle}</p>
+                <p className="text-muted-foreground leading-relaxed">{product.about}</p>
+                <div className="flex flex-wrap gap-3 pt-2">
+                  <div className="flex items-center gap-2 bg-secondary rounded-full px-4 py-2 text-sm">
+                    <Clock className="w-4 h-4 text-primary" />
+                    <span>בישול {product.cookTime}</span>
+                  </div>
+                  <div className="flex items-center gap-2 bg-secondary rounded-full px-4 py-2 text-sm">
+                    <Flame className="w-4 h-4 text-primary" />
+                    <span>{product.weight}</span>
+                  </div>
+                </div>
+                <div className="flex flex-wrap gap-3 pt-4">
+                  <a href="tel:0509766643">
+                    <Button className="bg-primary text-primary-foreground hover:bg-primary-hover rounded-full px-6 gap-2">
+                      <Phone className="w-4 h-4" />
+                      להזמנה: 050-976-6643
+                    </Button>
+                  </a>
+                  <a href={product.pdfPath} download>
+                    <Button variant="outline" className="rounded-full px-6 gap-2">
+                      <Download className="w-4 h-4" />
+                      הורדת אריזה
+                    </Button>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </AnimateOnScroll>
+
+          {/* Recipe & Nutrition */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
+            {/* Recipe */}
+            <AnimateOnScroll>
+              <div className="bg-card rounded-2xl p-8 shadow-sm">
+                <div className="flex items-center gap-3 mb-6">
+                  <ChefHat className="w-6 h-6 text-primary" />
+                  <h2 className="font-serif text-2xl font-bold text-foreground">מתכון</h2>
+                </div>
+                <div className="mb-6">
+                  <h3 className="font-semibold text-foreground mb-3">מצרכים:</h3>
+                  <ul className="space-y-2">
+                    {product.ingredients.map((item, i) => (
+                      <li key={i} className="text-muted-foreground text-sm flex items-start gap-2">
+                        <span className="w-1.5 h-1.5 bg-primary rounded-full mt-1.5 flex-shrink-0" />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div>
+                  <h3 className="font-semibold text-foreground mb-3">הוראות הכנה:</h3>
+                  <ol className="space-y-3">
+                    {product.instructions.map((step, i) => (
+                      <li key={i} className="text-muted-foreground text-sm flex items-start gap-3">
+                        <span className="w-6 h-6 bg-primary/10 rounded-full flex items-center justify-center text-xs font-bold text-primary flex-shrink-0 mt-0.5">
+                          {i + 1}
+                        </span>
+                        {step}
+                      </li>
+                    ))}
+                  </ol>
+                </div>
+              </div>
+            </AnimateOnScroll>
+
+            {/* Nutrition */}
+            <AnimateOnScroll delay={150}>
+              <div className="bg-card rounded-2xl p-8 shadow-sm">
+                <h2 className="font-serif text-2xl font-bold text-foreground mb-6">ערכים תזונתיים</h2>
+                <p className="text-xs text-muted-foreground mb-4">סימון תזונתי ב-100 ג׳ מזון</p>
+                <div className="space-y-0">
+                  {product.nutrition.map((row, i) => (
+                    <div
+                      key={i}
+                      className={`flex justify-between py-2.5 px-2 text-sm ${
+                        i % 2 === 0 ? "bg-muted/30 rounded" : ""
+                      }`}
+                    >
+                      <span className="text-foreground font-medium">{row.label}</span>
+                      <span className="text-muted-foreground">{row.value}</span>
+                    </div>
+                  ))}
+                </div>
+                <div className="mt-6 pt-4 border-t border-border space-y-2 text-xs text-muted-foreground">
+                  <p><strong className="text-foreground">אלרגנים:</strong> {product.allergens}</p>
+                  <p><strong className="text-foreground">עלול להכיל:</strong> {product.mayContain}</p>
+                </div>
+              </div>
+            </AnimateOnScroll>
           </div>
-        </section>
-        
-        <section className="w-full mt-16 lg:mt-24">
-          <div className="mb-4 px-6">
-            <h2 className="text-sm font-light text-foreground">You might also like</h2>
-          </div>
-          <ProductCarousel />
-        </section>
-        
-        <section className="w-full">
-          <div className="mb-4 px-6">
-            <h2 className="text-sm font-light text-foreground">Our other Earrings</h2>
-          </div>
-          <ProductCarousel />
-        </section>
+
+          {/* CTA */}
+          <AnimateOnScroll>
+            <div className="mt-16 text-center bg-primary rounded-2xl p-8 md:p-12">
+              <h2 className="font-serif text-2xl font-bold text-primary-foreground mb-3">
+                רוצים להזמין?
+              </h2>
+              <p className="text-primary-foreground/80 mb-6">התקשרו אלינו להזמנה</p>
+              <a href="tel:0509766643">
+                <Button className="bg-accent text-accent-foreground hover:bg-accent/90 rounded-full px-8 py-6 text-base font-medium gap-2">
+                  <Phone className="w-5 h-5" />
+                  050-976-6643
+                </Button>
+              </a>
+            </div>
+          </AnimateOnScroll>
+        </div>
       </main>
-      
+
       <Footer />
     </div>
   );

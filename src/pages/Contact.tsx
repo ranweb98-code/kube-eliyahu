@@ -1,6 +1,6 @@
 import Header from "../components/header/Header";
 import Footer from "../components/footer/Footer";
-import { Phone, Instagram, Clock } from "lucide-react";
+import { Phone, Instagram, Clock, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const Contact = () => {
@@ -53,6 +53,25 @@ const Contact = () => {
                 </Button>
               </a>
             </div>
+          </div>
+
+          {/* Location */}
+          <div className="mt-8 bg-card rounded-xl p-8 text-center shadow-sm">
+            <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+              <MapPin className="w-7 h-7 text-primary" />
+            </div>
+            <h3 className="font-serif text-xl font-semibold mb-2 text-foreground">מיקום</h3>
+            <p className="text-muted-foreground text-sm mb-4">בואו לבקר אותנו</p>
+            <a
+              href="https://www.google.com/maps/search/?api=1&query=רחוב+הקדר+4+שער+בנימין"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Button className="bg-primary text-primary-foreground hover:bg-primary-hover rounded-full px-6 gap-2">
+                <MapPin className="w-4 h-4" />
+                רחוב הקדר 4, שער בנימין
+              </Button>
+            </a>
           </div>
 
           {/* Hours */}

@@ -1,11 +1,14 @@
+import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import Header from "../components/header/Header";
 import Footer from "../components/footer/Footer";
 import AnimateOnScroll from "@/components/AnimateOnScroll";
-import { Phone, Download, ArrowRight, Clock, ChefHat, Flame } from "lucide-react";
+import { Phone, ArrowRight, Clock, ChefHat, Flame } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import packSelek from "@/assets/pack-kubbeh-selek.png";
 import packSiska from "@/assets/pack-kubbeh-siska.png";
+import kubbehSelek from "@/assets/kubbeh-selek.jpg";
+import kubbeh1 from "@/assets/kubbeh-1.jpg";
 
 interface NutritionRow {
   label: string;

@@ -1,11 +1,14 @@
+import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import Header from "../components/header/Header";
 import Footer from "../components/footer/Footer";
 import AnimateOnScroll from "@/components/AnimateOnScroll";
-import { Phone, Download, ArrowRight, Clock, ChefHat, Flame } from "lucide-react";
+import { Phone, ArrowRight, Clock, ChefHat, Flame } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import packSelek from "@/assets/pack-kubbeh-selek.png";
 import packSiska from "@/assets/pack-kubbeh-siska.png";
+import kubbehSelek from "@/assets/kubbeh-selek.jpg";
+import kubbeh1 from "@/assets/kubbeh-1.jpg";
 
 interface NutritionRow {
   label: string;
@@ -16,9 +19,8 @@ interface ProductData {
   slug: string;
   name: string;
   subtitle: string;
-  image: string;
+  images: string[];
   weight: string;
-  pdfPath: string;
   cookTime: string;
   about: string;
   ingredients: string[];
@@ -33,9 +35,8 @@ const productsData: ProductData[] = [
     slug: "kubeh-siska",
     name: "קובה סיסקה למרק",
     subtitle: "מבשר מפורק",
-    image: packSiska,
+    images: [packSiska, kubbeh1],
     weight: "800 גרם",
-    pdfPath: "/pdfs/kubeh-siska.pdf",
     cookTime: "~10 דקות",
     about: "קובה אליהו הינו מאכל מסורתי הישר ממושב זכריה שבעמק האלה. הקובה בעל ניחוחות וטעמים מבית סבתא אוסנת. חוויה ייחודית של טעמים המעוררים געגועים לילדות מבית סבתא!",
     ingredients: [
@@ -76,9 +77,8 @@ const productsData: ProductData[] = [
     slug: "kubeh-selek",
     name: "קובה למרק סלק",
     subtitle: "במילוי בשר בקר",
-    image: packSelek,
+    images: [packSelek, kubbehSelek],
     weight: "800 גרם",
-    pdfPath: "/pdfs/kubeh-selek.pdf",
     cookTime: "~10 דקות",
     about: "קובה אליהו הינו מאכל מסורתי הישר ממושב זכריה שבעמק האלה. הקובה בעל ניחוחות וטעמים מבית סבתא אוסנת. חוויה ייחודית של טעמים המעוררים געגועים לילדות מבית סבתא!",
     ingredients: [
@@ -116,6 +116,45 @@ const productsData: ProductData[] = [
     mayContain: "סלרי, סויה, צנוברים, שומשום, שעורה-גלוטן",
   },
 ];
+
+const ImageSlider = ({ images, alt }: { images: string[]; alt: string }) => {
+  const [current, setCurrent] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrent((prev) => (prev + 1) % images.length);
+    }, 3500);
+    return () => clearInterval(timer);
+  }, [images.length]);
+
+  return (
+    <div className="bg-muted/5 rounded-2xl p-8 relative overflow-hidden">
+      <div className="relative aspect-square flex items-center justify-center">
+        {images.map((img, i) => (
+          <img
+            key={i}
+            src={img}
+            alt={`${alt} ${i + 1}`}
+            className={`absolute inset-0 w-full h-full object-contain transition-all duration-700 ease-in-out ${
+              i === current ? "opacity-100 translate-x-0" : "opacity-0 translate-x-8"
+            }`}
+          />
+        ))}
+      </div>
+      <div className="flex justify-center gap-2 mt-4">
+        {images.map((_, i) => (
+          <button
+            key={i}
+            onClick={() => setCurrent(i)}
+            className={`w-2 h-2 rounded-full transition-all duration-300 ${
+              i === current ? "bg-primary w-6" : "bg-muted-foreground/30"
+            }`}
+          />
+        ))}
+      </div>
+    </div>
+  );
+};
 
 const ProductDetail = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -158,9 +197,7 @@ const ProductDetail = () => {
           {/* Hero */}
           <AnimateOnScroll>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center mb-16">
-              <div className="bg-muted/5 rounded-2xl p-8 flex items-center justify-center">
-                <img src={product.image} alt={product.name} className="w-full max-w-sm object-contain" />
-              </div>
+              <ImageSlider images={product.images} alt={product.name} />
               <div className="space-y-4">
                 <h1 className="font-serif text-3xl md:text-4xl font-bold text-foreground">{product.name}</h1>
                 <p className="text-primary font-semibold text-lg">{product.subtitle}</p>
@@ -180,12 +217,6 @@ const ProductDetail = () => {
                     <Button className="bg-primary text-primary-foreground hover:bg-primary-hover rounded-full px-6 gap-2">
                       <Phone className="w-4 h-4" />
                       להזמנה: 050-976-6643
-                    </Button>
-                  </a>
-                  <a href={product.pdfPath} download>
-                    <Button variant="outline" className="rounded-full px-6 gap-2">
-                      <Download className="w-4 h-4" />
-                      הורדת אריזה
                     </Button>
                   </a>
                 </div>

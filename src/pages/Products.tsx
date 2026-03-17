@@ -33,7 +33,7 @@ const products: ProductItem[] = [
     name: "קובה סיסקה למרק",
     subtitle: "מבשר מפורק",
     description: "קובה סיסקה למרק מבשר מפורק עשיר בתיבול מסורתי. משקל נטו 800 גרם.",
-    image: "/lovable-uploads/69cc0ea3-7ce9-4bf8-ae31-26b88f34b858.png",
+    image: "/lovable-uploads/81d2b6a5-82d1-4cb2-8b56-06b2b039c52d.png",
     slug: "kubeh-siska",
   },
   {

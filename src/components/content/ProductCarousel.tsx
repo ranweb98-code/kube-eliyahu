@@ -1,4 +1,6 @@
+import { Link } from "react-router-dom";
 import AnimateOnScroll from "@/components/AnimateOnScroll";
+import { ArrowLeft } from "lucide-react";
 import packSelek from "@/assets/pack-kubbeh-selek.png";
 import packSiska from "@/assets/pack-kubbeh-siska.png";
 import packNablusia from "@/assets/pack-kubbeh-nablusia.png";
@@ -12,11 +14,12 @@ interface Product {
   description: string;
   image: string;
   isNew?: boolean;
+  slug?: string;
 }
 
 const products: Product[] = [
-  { id: 1, name: "קובה סלק", description: "במילוי בשר בקר", image: packSelek },
-  { id: 2, name: "קובה סיסקה", description: "מבשר מפורק", image: packSiska, isNew: true },
+  { id: 1, name: "קובה סלק", description: "במילוי בשר בקר", image: packSelek, slug: "kubeh-selek" },
+  { id: 2, name: "קובה סיסקה", description: "מבשר מפורק", image: packSiska, isNew: true, slug: "kubeh-siska" },
   { id: 3, name: "קובה נבלוסיה", description: "\nמבשר בקר וצנוברים", image: packNablusia },
   { id: 4, name: "סיגר סיסקה", description: "סיגר במילוי בשר", image: packCigarSiska },
   { id: 5, name: "סיגר מרוקאי", description: "סיגר מסורתי", image: packCigarMoroccan, isNew: true },
@@ -25,6 +28,39 @@ const products: Product[] = [
 const ProductCarousel = () => {
   // Triple the items for seamless infinite loop
   const allItems = [...products, ...products, ...products];
+
+  const CardContent = ({ product }: { product: Product }) => (
+    <>
+      <div className="aspect-square mb-3 overflow-hidden rounded-lg bg-muted/10 relative">
+        <img
+          src={product.image}
+          alt={product.name}
+          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+        />
+        {product.isNew && (
+          <div className="absolute top-3 right-3 bg-accent text-accent-foreground px-3 py-1 rounded-full text-xs font-bold">
+            חדש!
+          </div>
+        )}
+        {product.slug && (
+          <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/10 transition-colors duration-300 flex items-end justify-center pb-4 opacity-0 group-hover:opacity-100">
+            <span className="bg-background/90 backdrop-blur-sm text-foreground text-xs font-medium px-3 py-1.5 rounded-full flex items-center gap-1">
+              לפרטים ומתכון
+              <ArrowLeft className="w-3 h-3" />
+            </span>
+          </div>
+        )}
+      </div>
+      <div className="space-y-1" dir="rtl">
+        <h3 className="font-serif text-base font-semibold text-foreground">
+          {product.name}
+        </h3>
+        <p className="text-sm text-muted-foreground">
+          {product.description}
+        </p>
+      </div>
+    </>
+  );
 
   return (
     <section className="w-full py-12 px-6">
@@ -43,31 +79,22 @@ const ProductCarousel = () => {
           }}
         >
           {allItems.map((product, i) => (
-            <div
-              key={`${product.id}-${i}`}
-              className="w-[160px] sm:w-[190px] md:w-[220px] flex-shrink-0 group cursor-pointer"
-            >
-              <div className="aspect-square mb-3 overflow-hidden rounded-lg bg-muted/10 relative">
-                <img
-                  src={product.image}
-                  alt={product.name}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                />
-                {product.isNew && (
-                  <div className="absolute top-3 right-3 bg-accent text-accent-foreground px-3 py-1 rounded-full text-xs font-bold">
-                    חדש!
-                  </div>
-                )}
+            product.slug ? (
+              <Link
+                key={`${product.id}-${i}`}
+                to={`/products/${product.slug}`}
+                className="w-[160px] sm:w-[190px] md:w-[220px] flex-shrink-0 group cursor-pointer"
+              >
+                <CardContent product={product} />
+              </Link>
+            ) : (
+              <div
+                key={`${product.id}-${i}`}
+                className="w-[160px] sm:w-[190px] md:w-[220px] flex-shrink-0 group cursor-pointer"
+              >
+                <CardContent product={product} />
               </div>
-              <div className="space-y-1" dir="rtl">
-                <h3 className="font-serif text-base font-semibold text-foreground">
-                  {product.name}
-                </h3>
-                <p className="text-sm text-muted-foreground">
-                  {product.description}
-                </p>
-              </div>
-            </div>
+            )
           ))}
         </div>
       </div>

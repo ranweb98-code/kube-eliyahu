@@ -156,7 +156,7 @@ const ImageSlider = ({ images, alt }: { images: string[]; alt: string }) => {
   );
 };
 
-
+const ProductDetail = () => {
   const { slug } = useParams<{ slug: string }>();
   const product = productsData.find((p) => p.slug === slug);
 

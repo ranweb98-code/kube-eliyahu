@@ -1,6 +1,6 @@
 import Header from "../components/header/Header";
 import Footer from "../components/footer/Footer";
-import { Phone, Instagram, Clock } from "lucide-react";
+import { Phone, Instagram, Clock, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const Contact = () => {

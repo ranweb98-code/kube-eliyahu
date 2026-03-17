@@ -19,9 +19,8 @@ interface ProductData {
   slug: string;
   name: string;
   subtitle: string;
-  image: string;
+  images: string[];
   weight: string;
-  pdfPath: string;
   cookTime: string;
   about: string;
   ingredients: string[];

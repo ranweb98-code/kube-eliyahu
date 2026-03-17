@@ -16,6 +16,7 @@ interface ProductItem {
   subtitle: string;
   description: string;
   image: string;
+  slug?: string;
 }
 
 const products: ProductItem[] = [

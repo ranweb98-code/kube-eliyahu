@@ -119,6 +119,13 @@ const productsData: ProductData[] = [
   },
 ];
 
+const mirroredPdfImageMarkers = [
+  "kubeh-siska-front",
+  "kubeh-siska-back",
+  "kubeh-selek-front",
+  "kubeh-selek-back",
+];
+
 const ImageSlider = ({ images, alt }: { images: string[]; alt: string }) => {
   const [current, setCurrent] = useState(0);
 
@@ -129,6 +136,9 @@ const ImageSlider = ({ images, alt }: { images: string[]; alt: string }) => {
     return () => clearInterval(timer);
   }, [images.length]);
 
+  const isMirroredPdfImage = (imageSrc: string) =>
+    mirroredPdfImageMarkers.some((marker) => imageSrc.includes(marker));
+
   return (
     <div className="bg-muted/5 rounded-2xl p-8 relative overflow-hidden">
       <div className="relative aspect-square flex items-center justify-center">
@@ -137,10 +147,11 @@ const ImageSlider = ({ images, alt }: { images: string[]; alt: string }) => {
             key={i}
             src={img}
             alt={`${alt} ${i + 1}`}
-            className={`absolute inset-0 w-full h-full object-contain transition-all duration-700 ease-in-out ${
-              i === current ? "opacity-100 translate-x-0" : "opacity-0 translate-x-8"
-            }`}
-            style={(img === siskaFront || img === siskaBack || img === selekFront || img === selekBack) ? { transform: `scaleX(-1) ${i === current ? 'translateX(0)' : 'translateX(2rem)'}` } : undefined}
+            className="absolute inset-0 w-full h-full object-contain transition-all duration-700 ease-in-out"
+            style={{
+              opacity: i === current ? 1 : 0,
+              transform: `${isMirroredPdfImage(img) ? "scaleX(-1) " : ""}translateX(${i === current ? "0" : "2rem"})`,
+            }}
           />
         ))}
       </div>

@@ -119,12 +119,7 @@ const productsData: ProductData[] = [
   },
 ];
 
-const rotatedPdfImageMarkers = [
-  "kubeh-siska-front",
-  "kubeh-siska-back",
-  "kubeh-selek-front",
-  "kubeh-selek-back",
-];
+const rotatedPdfImages = new Set([siskaFront]);
 
 const ImageSlider = ({ images, alt }: { images: string[]; alt: string }) => {
   const [current, setCurrent] = useState(0);
@@ -137,7 +132,7 @@ const ImageSlider = ({ images, alt }: { images: string[]; alt: string }) => {
   }, [images.length]);
 
   const shouldRotateImage = (imageSrc: string) =>
-    rotatedPdfImageMarkers.some((marker) => imageSrc.includes(marker));
+    rotatedPdfImages.has(imageSrc);
 
   return (
     <div className="bg-muted/5 rounded-2xl p-8 relative overflow-hidden">

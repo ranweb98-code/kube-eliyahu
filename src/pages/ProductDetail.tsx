@@ -119,7 +119,7 @@ const productsData: ProductData[] = [
   },
 ];
 
-const mirroredPdfImageMarkers = [
+const rotatedPdfImageMarkers = [
   "kubeh-siska-front",
   "kubeh-siska-back",
   "kubeh-selek-front",
@@ -136,8 +136,8 @@ const ImageSlider = ({ images, alt }: { images: string[]; alt: string }) => {
     return () => clearInterval(timer);
   }, [images.length]);
 
-  const isMirroredPdfImage = (imageSrc: string) =>
-    mirroredPdfImageMarkers.some((marker) => imageSrc.includes(marker));
+  const shouldRotateImage = (imageSrc: string) =>
+    rotatedPdfImageMarkers.some((marker) => imageSrc.includes(marker));
 
   return (
     <div className="bg-muted/5 rounded-2xl p-8 relative overflow-hidden">
@@ -150,7 +150,7 @@ const ImageSlider = ({ images, alt }: { images: string[]; alt: string }) => {
             className="absolute inset-0 w-full h-full object-contain transition-all duration-700 ease-in-out"
             style={{
               opacity: i === current ? 1 : 0,
-              transform: `${isMirroredPdfImage(img) ? "scaleX(-1) " : ""}translateX(${i === current ? "0" : "2rem"})`,
+              transform: shouldRotateImage(img) ? "rotate(180deg)" : "none",
             }}
           />
         ))}

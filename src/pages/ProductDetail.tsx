@@ -158,9 +158,7 @@ const ProductDetail = () => {
           {/* Hero */}
           <AnimateOnScroll>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center mb-16">
-              <div className="bg-muted/5 rounded-2xl p-8 flex items-center justify-center">
-                <img src={product.image} alt={product.name} className="w-full max-w-sm object-contain" />
-              </div>
+              <ImageSlider images={product.images} alt={product.name} />
               <div className="space-y-4">
                 <h1 className="font-serif text-3xl md:text-4xl font-bold text-foreground">{product.name}</h1>
                 <p className="text-primary font-semibold text-lg">{product.subtitle}</p>
@@ -180,12 +178,6 @@ const ProductDetail = () => {
                     <Button className="bg-primary text-primary-foreground hover:bg-primary-hover rounded-full px-6 gap-2">
                       <Phone className="w-4 h-4" />
                       להזמנה: 050-976-6643
-                    </Button>
-                  </a>
-                  <a href={product.pdfPath} download>
-                    <Button variant="outline" className="rounded-full px-6 gap-2">
-                      <Download className="w-4 h-4" />
-                      הורדת אריזה
                     </Button>
                   </a>
                 </div>

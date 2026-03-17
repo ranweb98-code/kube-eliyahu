@@ -81,17 +81,37 @@ const Products = () => {
             {products.map((product, i) => (
               <AnimateOnScroll key={product.id} delay={i * 120}>
                 <div className="bg-card rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-500 group">
-                  <div className="aspect-[3/4] overflow-hidden bg-muted/5 p-4 flex items-center justify-center">
-                    <img
-                      src={product.image}
-                      alt={product.name}
-                      className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
-                    />
-                  </div>
+                  {product.slug ? (
+                    <Link to={`/products/${product.slug}`}>
+                      <div className="aspect-[3/4] overflow-hidden bg-muted/5 p-4 flex items-center justify-center">
+                        <img
+                          src={product.image}
+                          alt={product.name}
+                          className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
+                        />
+                      </div>
+                    </Link>
+                  ) : (
+                    <div className="aspect-[3/4] overflow-hidden bg-muted/5 p-4 flex items-center justify-center">
+                      <img
+                        src={product.image}
+                        alt={product.name}
+                        className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
+                      />
+                    </div>
+                  )}
                   <div className="p-5 space-y-2 text-center">
-                    <h3 className="font-serif text-xl font-bold text-foreground">
-                      {product.name}
-                    </h3>
+                    {product.slug ? (
+                      <Link to={`/products/${product.slug}`} className="hover:text-primary transition-colors">
+                        <h3 className="font-serif text-xl font-bold text-foreground">
+                          {product.name}
+                        </h3>
+                      </Link>
+                    ) : (
+                      <h3 className="font-serif text-xl font-bold text-foreground">
+                        {product.name}
+                      </h3>
+                    )}
                     <p className="text-primary font-semibold text-sm">
                       {product.subtitle}
                     </p>

@@ -117,7 +117,46 @@ const productsData: ProductData[] = [
   },
 ];
 
-const ProductDetail = () => {
+const ImageSlider = ({ images, alt }: { images: string[]; alt: string }) => {
+  const [current, setCurrent] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrent((prev) => (prev + 1) % images.length);
+    }, 3500);
+    return () => clearInterval(timer);
+  }, [images.length]);
+
+  return (
+    <div className="bg-muted/5 rounded-2xl p-8 relative overflow-hidden">
+      <div className="relative aspect-square flex items-center justify-center">
+        {images.map((img, i) => (
+          <img
+            key={i}
+            src={img}
+            alt={`${alt} ${i + 1}`}
+            className={`absolute inset-0 w-full h-full object-contain transition-all duration-700 ease-in-out ${
+              i === current ? "opacity-100 translate-x-0" : "opacity-0 translate-x-8"
+            }`}
+          />
+        ))}
+      </div>
+      <div className="flex justify-center gap-2 mt-4">
+        {images.map((_, i) => (
+          <button
+            key={i}
+            onClick={() => setCurrent(i)}
+            className={`w-2 h-2 rounded-full transition-all duration-300 ${
+              i === current ? "bg-primary w-6" : "bg-muted-foreground/30"
+            }`}
+          />
+        ))}
+      </div>
+    </div>
+  );
+};
+
+
   const { slug } = useParams<{ slug: string }>();
   const product = productsData.find((p) => p.slug === slug);
 

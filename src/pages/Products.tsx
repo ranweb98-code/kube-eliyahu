@@ -26,6 +26,7 @@ const products: ProductItem[] = [
     subtitle: "קובה סלק",
     description: "קובה למרק במילוי בשר בקר טרי, מוגשת עם סלק אדום עשיר. משקל נטו 800 גרם.",
     image: packSelek,
+    slug: "kubeh-selek",
   },
   {
     id: 2,

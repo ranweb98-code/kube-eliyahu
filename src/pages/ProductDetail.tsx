@@ -7,8 +7,10 @@ import { Phone, ArrowRight, Clock, ChefHat, Flame } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import packSelek from "@/assets/pack-kubbeh-selek.png";
 import packSiska from "@/assets/pack-kubbeh-siska.png";
-import kubbehSelek from "@/assets/kubbeh-selek.jpg";
-import kubbeh1 from "@/assets/kubbeh-1.jpg";
+import siskaFront from "@/assets/kubeh-siska-front.jpg";
+import siskaBack from "@/assets/kubeh-siska-back.jpg";
+import selekFront from "@/assets/kubeh-selek-front.jpg";
+import selekBack from "@/assets/kubeh-selek-back.jpg";
 
 interface NutritionRow {
   label: string;
@@ -35,7 +37,7 @@ const productsData: ProductData[] = [
     slug: "kubeh-siska",
     name: "קובה סיסקה למרק",
     subtitle: "מבשר מפורק",
-    images: [packSiska, kubbeh1],
+    images: [packSiska, siskaFront, siskaBack],
     weight: "800 גרם",
     cookTime: "~10 דקות",
     about: "קובה אליהו הינו מאכל מסורתי הישר ממושב זכריה שבעמק האלה. הקובה בעל ניחוחות וטעמים מבית סבתא אוסנת. חוויה ייחודית של טעמים המעוררים געגועים לילדות מבית סבתא!",
@@ -77,7 +79,7 @@ const productsData: ProductData[] = [
     slug: "kubeh-selek",
     name: "קובה למרק סלק",
     subtitle: "במילוי בשר בקר",
-    images: [packSelek, kubbehSelek],
+    images: [packSelek, selekFront, selekBack],
     weight: "800 גרם",
     cookTime: "~10 דקות",
     about: "קובה אליהו הינו מאכל מסורתי הישר ממושב זכריה שבעמק האלה. הקובה בעל ניחוחות וטעמים מבית סבתא אוסנת. חוויה ייחודית של טעמים המעוררים געגועים לילדות מבית סבתא!",

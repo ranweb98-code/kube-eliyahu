@@ -6,7 +6,7 @@ import AnimateOnScroll from "@/components/AnimateOnScroll";
 import { Phone, ArrowRight, Clock, ChefHat, Flame } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import packSelek from "@/assets/pack-kubbeh-selek.png";
-import packSiska from "@/assets/pack-kubbeh-siska.png";
+import packSiska from "@/assets/pack-kubbeh-siska-new.png";
 import siskaFront from "@/assets/kubeh-siska-front.jpg";
 import siskaBack from "@/assets/kubeh-siska-back.jpg";
 import selekFront from "@/assets/kubeh-selek-front.jpg";
@@ -139,7 +139,7 @@ const ImageSlider = ({ images, alt }: { images: string[]; alt: string }) => {
             alt={`${alt} ${i + 1}`}
             className={`absolute inset-0 w-full h-full object-contain transition-all duration-700 ease-in-out ${
               i === current ? "opacity-100 translate-x-0" : "opacity-0 translate-x-8"
-            }`}
+            } ${img === siskaFront || img === siskaBack || img === selekFront || img === selekBack ? "scale-x-[-1]" : ""}`}
           />
         ))}
       </div>

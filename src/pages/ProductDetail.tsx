@@ -135,14 +135,14 @@ const ImageSlider = ({ images, alt }: { images: string[]; alt: string }) => {
     rotatedPdfImages.has(imageSrc);
 
   return (
-    <div className="bg-muted/5 rounded-2xl p-8 relative overflow-hidden">
-      <div className="relative aspect-square flex items-center justify-center">
+    <div className="rounded-2xl p-6 md:p-8 relative overflow-hidden bg-card border border-border/60 shadow-[0_8px_30px_-12px_hsl(var(--foreground)/0.12)]">
+      <div className="relative aspect-square flex items-center justify-center rounded-xl overflow-hidden bg-muted/5">
         {images.map((img, i) => (
           <img
             key={i}
             src={img}
             alt={`${alt} ${i + 1}`}
-            className="absolute inset-0 w-full h-full object-contain transition-all duration-700 ease-in-out"
+            className="absolute inset-0 w-full h-full object-contain transition-all duration-700 ease-in-out p-4"
             style={{
               opacity: i === current ? 1 : 0,
               transform: shouldRotateImage(img) ? "rotate(180deg)" : "none",
@@ -150,13 +150,13 @@ const ImageSlider = ({ images, alt }: { images: string[]; alt: string }) => {
           />
         ))}
       </div>
-      <div className="flex justify-center gap-2 mt-4">
+      <div className="flex justify-center gap-2.5 mt-5">
         {images.map((_, i) => (
           <button
             key={i}
             onClick={() => setCurrent(i)}
-            className={`w-2 h-2 rounded-full transition-all duration-300 ${
-              i === current ? "bg-primary w-6" : "bg-muted-foreground/30"
+            className={`h-2 rounded-full transition-all duration-300 ${
+              i === current ? "bg-primary w-7" : "bg-muted-foreground/25 w-2"
             }`}
           />
         ))}

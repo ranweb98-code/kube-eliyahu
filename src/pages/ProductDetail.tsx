@@ -139,7 +139,7 @@ const ImageSlider = ({ images, alt }: { images: string[]; alt: string }) => {
             alt={`${alt} ${i + 1}`}
             className={`absolute inset-0 w-full h-full object-contain transition-all duration-700 ease-in-out ${
               i === current ? "opacity-100 translate-x-0" : "opacity-0 translate-x-8"
-            }`}
+            } ${img === siskaFront || img === siskaBack || img === selekFront || img === selekBack ? "scale-x-[-1]" : ""}`}
           />
         ))}
       </div>

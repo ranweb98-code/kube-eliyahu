@@ -64,7 +64,7 @@ const Products = () => {
     <div className="min-h-screen bg-background">
       <Header />
 
-      <main className="py-12 px-6">
+      <main className="pt-32 pb-12 px-6">
         <div className="max-w-6xl mx-auto">
           <AnimateOnScroll>
             <div className="text-center mb-12">

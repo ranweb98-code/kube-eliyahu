@@ -6,7 +6,7 @@ import AnimateOnScroll from "@/components/AnimateOnScroll";
 import { Phone, ArrowRight, Clock, ChefHat, Flame } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import packSelek from "@/assets/pack-kubbeh-selek.png";
-import packSiska from "@/assets/pack-kubbeh-siska.png";
+import packSiska from "@/assets/pack-kubbeh-siska-new.png";
 import siskaFront from "@/assets/kubeh-siska-front.jpg";
 import siskaBack from "@/assets/kubeh-siska-back.jpg";
 import selekFront from "@/assets/kubeh-selek-front.jpg";

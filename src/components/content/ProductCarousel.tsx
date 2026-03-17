@@ -2,10 +2,11 @@ import { Link } from "react-router-dom";
 import AnimateOnScroll from "@/components/AnimateOnScroll";
 import { ArrowLeft } from "lucide-react";
 import packSelek from "@/assets/pack-kubbeh-selek.png";
-import packSiska from "@/assets/pack-kubbeh-siska.png";
 import packNablusia from "@/assets/pack-kubbeh-nablusia.png";
-import packCigarSiska from "@/assets/pack-cigar-siska.png";
-import packCigarMoroccan from "@/assets/pack-cigar-moroccan.png";
+
+const packSiska = "/lovable-uploads/81d2b6a5-82d1-4cb2-8b56-06b2b039c52d.png";
+const packCigarMoroccan = "/lovable-uploads/1f2b4cf8-c731-4a26-87d3-ababd25d5583.png";
+const packCigarSiska = "/lovable-uploads/656b79e4-174e-47c3-ab34-3e6e273afa3e.png";
 
 
 interface Product {
@@ -21,8 +22,8 @@ const products: Product[] = [
   { id: 1, name: "קובה סלק", description: "במילוי בשר בקר", image: packSelek, slug: "kubeh-selek" },
   { id: 2, name: "קובה סיסקה", description: "מבשר מפורק", image: packSiska, isNew: true, slug: "kubeh-siska" },
   { id: 3, name: "קובה נבלוסיה", description: "\nמבשר בקר וצנוברים", image: packNablusia },
-  { id: 4, name: "סיגר סיסקה", description: "סיגר במילוי בשר", image: packCigarSiska },
-  { id: 5, name: "סיגר מרוקאי", description: "סיגר מסורתי", image: packCigarMoroccan, isNew: true },
+  { id: 4, name: "סיגר מרוקאי", description: "סיגר מסורתי", image: packCigarMoroccan, isNew: true },
+  { id: 5, name: "סיגר סיסקה", description: "סיגר במילוי בשר", image: packCigarSiska },
 ];
 
 const ProductCarousel = () => {

@@ -37,7 +37,7 @@ const productsData: ProductData[] = [
     slug: "kubeh-siska",
     name: "קובה סיסקה למרק",
     subtitle: "מבשר מפורק",
-    images: [packSiska, kubbeh1],
+    images: [packSiska, siskaFront, siskaBack],
     weight: "800 גרם",
     cookTime: "~10 דקות",
     about: "קובה אליהו הינו מאכל מסורתי הישר ממושב זכריה שבעמק האלה. הקובה בעל ניחוחות וטעמים מבית סבתא אוסנת. חוויה ייחודית של טעמים המעוררים געגועים לילדות מבית סבתא!",

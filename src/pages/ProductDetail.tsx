@@ -77,9 +77,8 @@ const productsData: ProductData[] = [
     slug: "kubeh-selek",
     name: "קובה למרק סלק",
     subtitle: "במילוי בשר בקר",
-    image: packSelek,
+    images: [packSelek, kubbehSelek],
     weight: "800 גרם",
-    pdfPath: "/pdfs/kubeh-selek.pdf",
     cookTime: "~10 דקות",
     about: "קובה אליהו הינו מאכל מסורתי הישר ממושב זכריה שבעמק האלה. הקובה בעל ניחוחות וטעמים מבית סבתא אוסנת. חוויה ייחודית של טעמים המעוררים געגועים לילדות מבית סבתא!",
     ingredients: [

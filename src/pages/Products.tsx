@@ -8,7 +8,7 @@ import packSelek from "@/assets/pack-kubbeh-selek.png";
 import packSiska from "@/assets/pack-kubbeh-siska.png";
 import packNablusia from "@/assets/pack-kubbeh-nablusia.png";
 const packCigarMoroccan = "/lovable-uploads/1f2b4cf8-c731-4a26-87d3-ababd25d5583.png";
-import packCigarSiska from "@/assets/pack-cigar-siska.png";
+const packCigarSiska = "/lovable-uploads/656b79e4-174e-47c3-ab34-3e6e273afa3e.png";
 
 interface ProductItem {
   id: number;

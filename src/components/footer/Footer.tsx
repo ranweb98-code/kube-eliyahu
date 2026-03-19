@@ -31,15 +31,15 @@ const Footer = () => {
                 <Instagram className="w-4 h-4" />
                 <span>@kube_eliyahu</span>
               </a>
-              <a
-                href="https://www.google.com/maps/search/?api=1&query=רחוב+הקדר+4+שער+בנימין"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 justify-center md:justify-start hover:text-primary-foreground transition-colors">
-                
-                <MapPin className="w-4 h-4" />
-                <span>​כל המקומות בצור קשר   </span>
-              </a>
+              
+
+
+
+
+
+
+
+              
             </div>
           </div>
 

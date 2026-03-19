@@ -8,6 +8,7 @@ import Index from "./pages/Index";
 
 import About from "./pages/About";
 import Contact from "./pages/Contact";
+import StoreLocationsPage from "./pages/StoreLocationsPage";
 import Products from "./pages/Products";
 import ProductDetail from "./pages/ProductDetail";
 import NotFound from "./pages/NotFound";

@@ -25,7 +25,7 @@ const Navigation = () => {
     
     { name: "המוצרים", href: "/products" },
     { name: "אודות", href: "/about" },
-    { name: "נקודות רכישה", href: "/contact" },
+    { name: "צור קשר", href: "/contact" },
   ];
 
   return (

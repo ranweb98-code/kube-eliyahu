@@ -94,8 +94,9 @@ const Contact = () => {
                 <span>שבת</span>
                 <span className="font-medium">סגור</span>
               </div>
-            </div>
           </div>
+
+          <StoreLocations />
         </div>
       </main>
 

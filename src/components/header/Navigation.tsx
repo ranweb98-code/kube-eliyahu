@@ -22,10 +22,10 @@ const Navigation = () => {
 
   const navItems = [
     { name: "ראשי", href: "/" },
-    
     { name: "המוצרים", href: "/products" },
     { name: "אודות", href: "/about" },
     { name: "צור קשר", href: "/contact" },
+    { name: "נקודות רכישה", href: "/store-locations" },
   ];
 
   return (

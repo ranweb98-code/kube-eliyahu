@@ -2,6 +2,7 @@ import Header from "../components/header/Header";
 import Footer from "../components/footer/Footer";
 import { Phone, Instagram, Clock, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import StoreLocations from "@/components/StoreLocations";
 
 const Contact = () => {
   return (
@@ -46,7 +47,6 @@ const Contact = () => {
                 href="https://www.instagram.com/kube_eliyahu?igsh=MXBpM3I1eHNvNXFyOA=="
                 target="_blank"
                 rel="noopener noreferrer">
-                
                 <Button className="bg-primary text-primary-foreground hover:bg-primary-hover rounded-full px-6 gap-2">
                   <Instagram className="w-4 h-4" />
                   @kube_eliyahu
@@ -57,16 +57,12 @@ const Contact = () => {
 
           {/* Location */}
           <div className="mt-8 bg-card rounded-xl p-8 text-center shadow-sm">
-            
-
-            
             <h3 className="font-serif text-xl font-semibold mb-2 text-foreground">מיקום</h3>
             <p className="text-muted-foreground text-sm mb-4">בואו לבקר אותנו</p>
             <a
               href="https://www.google.com/maps/search/?api=1&query=רחוב+הקדר+4+שער+בנימין"
               target="_blank"
               rel="noopener noreferrer">
-              
               <Button className="bg-primary text-primary-foreground hover:bg-primary-hover rounded-full px-6 gap-2">
                 <MapPin className="w-4 h-4" />
                 רחוב הקדר 4, שער בנימין
@@ -96,11 +92,16 @@ const Contact = () => {
             </div>
           </div>
         </div>
+
+        {/* Store Locations */}
+        <div className="max-w-6xl mx-auto">
+          <StoreLocations />
+        </div>
       </main>
 
       <Footer />
-    </div>);
-
+    </div>
+  );
 };
 
 export default Contact;

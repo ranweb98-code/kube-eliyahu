@@ -2,6 +2,7 @@ import Header from "../components/header/Header";
 import Footer from "../components/footer/Footer";
 import { Phone, Instagram, Clock, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import StoreLocations from "@/components/StoreLocations";
 
 const Contact = () => {
   return (
@@ -95,6 +96,8 @@ const Contact = () => {
               </div>
             </div>
           </div>
+
+          <StoreLocations />
         </div>
       </main>
 

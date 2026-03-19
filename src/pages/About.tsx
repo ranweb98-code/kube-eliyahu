@@ -8,7 +8,7 @@ const About = () => {
     <div className="min-h-screen bg-background">
       <Header />
       
-      <main className="py-12 px-6">
+      <main className="pt-32 pb-12 px-6">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12">
             <h1 className="font-serif text-4xl md:text-5xl font-bold text-foreground mb-4">

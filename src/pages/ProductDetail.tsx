@@ -7,10 +7,6 @@ import { Phone, ArrowRight, Clock, ChefHat, Flame } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import packSelek from "@/assets/pack-kubbeh-selek.png";
 import packSiska from "@/assets/pack-kubbeh-siska-new.png";
-import siskaFront from "@/assets/kubeh-siska-front.jpg";
-import siskaBack from "@/assets/kubeh-siska-back.jpg";
-import selekFront from "@/assets/kubeh-selek-front.jpg";
-import selekBack from "@/assets/kubeh-selek-back.jpg";
 
 interface NutritionRow {
   label: string;
@@ -37,7 +33,7 @@ const productsData: ProductData[] = [
     slug: "kubeh-siska",
     name: "קובה סיסקה למרק",
     subtitle: "מבשר מפורק",
-    images: [packSiska, siskaFront, siskaBack],
+    images: [packSiska],
     weight: "800 גרם",
     cookTime: "~10 דקות",
     about: "קובה אליהו הינו מאכל מסורתי הישר ממושב זכריה שבעמק האלה. הקובה בעל ניחוחות וטעמים מבית סבתא אוסנת. חוויה ייחודית של טעמים המעוררים געגועים לילדות מבית סבתא!",
@@ -79,7 +75,7 @@ const productsData: ProductData[] = [
     slug: "kubeh-selek",
     name: "קובה למרק סלק",
     subtitle: "במילוי בשר בקר",
-    images: [packSelek, selekFront, selekBack],
+    images: [packSelek],
     weight: "800 גרם",
     cookTime: "~10 דקות",
     about: "קובה אליהו הינו מאכל מסורתי הישר ממושב זכריה שבעמק האלה. הקובה בעל ניחוחות וטעמים מבית סבתא אוסנת. חוויה ייחודית של טעמים המעוררים געגועים לילדות מבית סבתא!",
@@ -119,47 +115,15 @@ const productsData: ProductData[] = [
   },
 ];
 
-const rotatedPdfImages = new Set([siskaFront]);
-
 const ImageSlider = ({ images, alt }: { images: string[]; alt: string }) => {
-  const [current, setCurrent] = useState(0);
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrent((prev) => (prev + 1) % images.length);
-    }, 3500);
-    return () => clearInterval(timer);
-  }, [images.length]);
-
-  const shouldRotateImage = (imageSrc: string) =>
-    rotatedPdfImages.has(imageSrc);
-
   return (
     <div className="rounded-2xl p-6 md:p-8 relative overflow-hidden bg-card border border-border/60 shadow-[0_8px_30px_-12px_hsl(var(--foreground)/0.12)]">
       <div className="relative aspect-square flex items-center justify-center rounded-xl overflow-hidden bg-muted/5">
-        {images.map((img, i) => (
-          <img
-            key={i}
-            src={img}
-            alt={`${alt} ${i + 1}`}
-            className="absolute inset-0 w-full h-full object-contain transition-all duration-700 ease-in-out p-4"
-            style={{
-              opacity: i === current ? 1 : 0,
-              transform: shouldRotateImage(img) ? "rotate(180deg)" : "none",
-            }}
-          />
-        ))}
-      </div>
-      <div className="flex justify-center gap-2.5 mt-5">
-        {images.map((_, i) => (
-          <button
-            key={i}
-            onClick={() => setCurrent(i)}
-            className={`h-2 rounded-full transition-all duration-300 ${
-              i === current ? "bg-primary w-7" : "bg-muted-foreground/25 w-2"
-            }`}
-          />
-        ))}
+        <img
+          src={images[0]}
+          alt={alt}
+          className="w-full h-full object-contain p-4"
+        />
       </div>
     </div>
   );

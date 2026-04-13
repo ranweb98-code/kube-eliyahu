@@ -92,15 +92,6 @@ const Contact = () => {
             </div>
           </div>
 
-          {/* Link to Store Locations */}
-          <div className="mt-12 text-center">
-            <Link to="/store-locations">
-              <Button variant="outline" className="rounded-full px-8 gap-2">
-                <MapPin className="w-4 h-4" />
-                לכל נקודות הרכישה
-              </Button>
-            </Link>
-          </div>
         </div>
       </main>
 

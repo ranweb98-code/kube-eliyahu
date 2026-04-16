@@ -48,9 +48,9 @@ const CountUp = ({ target, suffix = "" }: { target: number; suffix?: string }) =
 };
 
 const stats = [
-  { target: 20, label: "שנות ניסיון" },
+  { target: 5, label: "שנות ניסיון" },
   { target: 80, label: "נקודות מכירה" },
-  { target: 10, label: "טעמי קובה" },
+  { target: 5000, label: "לקוחות מרוצים" },
 ];
 
 const EditorialSection = () => {

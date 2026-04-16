@@ -2,7 +2,7 @@ import Header from "../components/header/Header";
 import Footer from "../components/footer/Footer";
 import kubbeh6 from "@/assets/kubbeh-6.jpg";
 import kubbeh8 from "@/assets/kubbeh-8.jpg";
-import grandmaIllustration from "@/assets/grandma-illustration-white.png";
+import grandmaIllustration from "@/assets/grandma-illustration-new.png";
 
 const About = () => {
   return (

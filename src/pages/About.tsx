@@ -2,10 +2,21 @@ import Header from "../components/header/Header";
 import Footer from "../components/footer/Footer";
 import kubbeh6 from "@/assets/kubbeh-6.jpg";
 import kubbeh8 from "@/assets/kubbeh-8.jpg";
+import grandmaIllustration from "@/assets/grandma-illustration.png";
 
 const About = () => {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-white relative">
+      {/* Background illustration */}
+      <div 
+        className="fixed inset-0 pointer-events-none opacity-[0.07] z-0"
+        style={{
+          backgroundImage: `url(${grandmaIllustration})`,
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+          backgroundSize: '60%',
+        }}
+      />
       <Header />
       
       <main className="pt-32 pb-12 px-6">

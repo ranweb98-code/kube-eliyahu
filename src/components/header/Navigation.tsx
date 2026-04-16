@@ -73,12 +73,14 @@ const Navigation = () => {
         </button>
 
         {/* Center logo */}
-        <Link to="/" className="absolute left-1/2 -translate-x-1/2">
+        <Link to="/" className="absolute left-1/2 -translate-x-1/2 top-1/2">
           <img
             src={logo}
             alt="קובה אליהו"
-            className={`rounded-full transition-all duration-500 ${
-              showSolid ? "h-14 w-auto" : "h-16 w-auto ring-2 ring-white/30"
+            className={`rounded-full transition-all duration-500 shadow-lg ${
+              showSolid
+                ? "h-20 w-20 -translate-y-1/2 ring-4 ring-card/80"
+                : "h-28 w-28 translate-y-[-30%] ring-4 ring-white/30"
             }`}
           />
         </Link>

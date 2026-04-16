@@ -3,8 +3,10 @@ import Footer from "../components/footer/Footer";
 import LargeHero from "../components/content/LargeHero";
 import FiftyFiftySection from "../components/content/FiftyFiftySection";
 import ProductCarousel from "../components/content/ProductCarousel";
+import WhyChooseUs from "../components/content/WhyChooseUs";
 import OneThirdTwoThirdsSection from "../components/content/OneThirdTwoThirdsSection";
 import EditorialSection from "../components/content/EditorialSection";
+import InstagramCTA from "../components/content/InstagramCTA";
 
 const Index = () => {
   return (
@@ -13,10 +15,12 @@ const Index = () => {
       
       <main>
         <LargeHero />
+        <WhyChooseUs />
         <FiftyFiftySection />
         <ProductCarousel />
-        <OneThirdTwoThirdsSection />
         <EditorialSection />
+        <OneThirdTwoThirdsSection />
+        <InstagramCTA />
       </main>
       
       <Footer />

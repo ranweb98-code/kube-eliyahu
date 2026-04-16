@@ -2,6 +2,57 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Anomalia Font Family */
+@font-face {
+  font-family: 'Anomalia';
+  src: url('/fonts/anomalia-light.otf') format('opentype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Anomalia';
+  src: url('/fonts/anomalia-regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Anomalia';
+  src: url('/fonts/anomalia-medium.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Anomalia';
+  src: url('/fonts/anomalia-demibold.otf') format('opentype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Anomalia';
+  src: url('/fonts/anomalia-bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Anomalia';
+  src: url('/fonts/anomalia-ultrabold.otf') format('opentype');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Anomalia Hollow';
+  src: url('/fonts/anomalia-hollow.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* קובה אליהו - Warm Traditional Food Design System */
 
 @layer base {
@@ -63,16 +114,26 @@
 
   body {
     @apply bg-background text-foreground;
-    font-family: 'Heebo', sans-serif;
+    font-family: 'Anomalia', 'Heebo', sans-serif;
+    font-weight: 400;
     direction: rtl;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Frank Ruhl Libre', serif;
+    font-family: 'Anomalia', 'Frank Ruhl Libre', serif;
+    font-weight: 700;
+  }
+
+  h1 {
+    font-weight: 800;
   }
 }
 
 @layer utilities {
+  .font-anomalia-hollow {
+    font-family: 'Anomalia Hollow', serif;
+  }
+
   .story-link {
     @apply relative;
   }

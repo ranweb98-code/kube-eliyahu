@@ -14,8 +14,9 @@ export default {
     },
     extend: {
       fontFamily: {
-        sans: ['Heebo', 'sans-serif'],
-        serif: ['Frank Ruhl Libre', 'serif'],
+        sans: ['Anomalia', 'Heebo', 'sans-serif'],
+        serif: ['Anomalia', 'Frank Ruhl Libre', 'serif'],
+        hollow: ['Anomalia Hollow', 'serif'],
       },
       colors: {
         border: "hsl(var(--border))",

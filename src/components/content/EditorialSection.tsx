@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import AnimateOnScroll from "@/components/AnimateOnScroll";
 import kubbeh8 from "@/assets/kubbeh-8.jpg";
 
-const CountUp = ({ target, suffix = "" }: { target: number | string; suffix?: string }) => {
+const CountUp = ({ target, suffix = "" }: { target: number; suffix?: string }) => {
   const [count, setCount] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
@@ -22,7 +22,7 @@ const CountUp = ({ target, suffix = "" }: { target: number | string; suffix?: st
   }, []);
 
   useEffect(() => {
-    if (!isVisible || typeof target !== "number") return;
+    if (!isVisible) return;
     let start = 0;
     const duration = 2000;
     const step = Math.ceil(target / (duration / 30));
@@ -39,21 +39,42 @@ const CountUp = ({ target, suffix = "" }: { target: number | string; suffix?: st
   }, [isVisible, target]);
 
   return (
-    <div ref={ref}>
-      <p className="font-serif text-4xl md:text-5xl font-bold text-primary">
-        {typeof target === "number" ? count : target}{suffix}
+    <div ref={ref} className="text-center">
+      <p className="text-5xl md:text-6xl font-extrabold text-accent mb-2">
+        {count}+{suffix}
       </p>
     </div>
   );
 };
 
+const stats = [
+  { target: 20, label: "שנות ניסיון" },
+  { target: 80, label: "נקודות מכירה" },
+  { target: 10, label: "טעמי קובה" },
+];
+
 const EditorialSection = () => {
   return (
     <section className="w-full py-20 px-6">
       <div className="max-w-5xl mx-auto">
+        {/* Animated Counters */}
+        <AnimateOnScroll className="mb-16">
+          <div className="bg-primary rounded-2xl p-10 md:p-14">
+            <div className="grid grid-cols-3 gap-6">
+              {stats.map((s, i) => (
+                <div key={i} className="text-center">
+                  <CountUp target={s.target} />
+                  <p className="text-primary-foreground/80 text-sm md:text-base mt-1">{s.label}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </AnimateOnScroll>
+
+        {/* Story */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-          <AnimateOnScroll className="text-center space-y-6">
-            <h2 className="font-serif text-3xl md:text-4xl font-bold text-foreground leading-tight">
+          <AnimateOnScroll className="text-center md:text-right space-y-6">
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground leading-tight">
               הסיפור שלנו
             </h2>
             <p className="text-muted-foreground leading-relaxed">
@@ -68,26 +89,12 @@ const EditorialSection = () => {
           </AnimateOnScroll>
 
           <AnimateOnScroll delay={200} className="order-first md:order-last">
-            <div className="w-full aspect-square overflow-hidden rounded-lg mb-8">
+            <div className="w-full aspect-square overflow-hidden rounded-2xl">
               <img
                 src={kubbeh8}
                 alt="הכנת קובה מסורתית"
                 className="w-full h-full object-cover"
               />
-            </div>
-            <div className="flex items-center justify-center gap-8">
-              <div className="text-center">
-                <CountUp target={100} suffix="%" />
-                <p className="text-sm text-muted-foreground mt-1">עבודת יד</p>
-              </div>
-              <div className="text-center">
-                <p className="font-serif text-4xl md:text-5xl font-bold text-primary">כשר</p>
-                <p className="text-sm text-muted-foreground mt-1">בשרי</p>
-              </div>
-              <div className="text-center">
-                <CountUp target={365} />
-                <p className="text-sm text-muted-foreground mt-1">ימים בשנה</p>
-              </div>
             </div>
           </AnimateOnScroll>
         </div>

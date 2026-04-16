@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Phone, Instagram } from "lucide-react";
+import { Phone, Instagram, Facebook } from "lucide-react";
 import logo from "@/assets/logo.jpg";
 
 const Navigation = () => {
@@ -17,7 +17,6 @@ const Navigation = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // On home page: transparent until scroll. Other pages: always solid.
   const showSolid = !isHome || isScrolled || isMobileMenuOpen;
 
   const navItems = [
@@ -87,6 +86,17 @@ const Navigation = () => {
         {/* Left side - Contact icons */}
         <div className="flex items-center gap-3">
           <a
+            href="https://www.facebook.com/profile.php?id=100075824275094"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={`p-2 transition-colors hover-scale ${
+              showSolid ? "text-foreground hover:text-primary" : "text-white/90 hover:text-white"
+            }`}
+            aria-label="פייסבוק"
+          >
+            <Facebook className="w-5 h-5" />
+          </a>
+          <a
             href="https://www.instagram.com/kube_eliyahu?igsh=MXBpM3I1eHNvNXFyOA=="
             target="_blank"
             rel="noopener noreferrer"
@@ -124,10 +134,14 @@ const Navigation = () => {
                 {item.name}
               </Link>
             ))}
-            <div className="pt-4 border-t border-border animate-fade-in" style={{ animationDelay: "320ms", animationFillMode: "both" }}>
+            <div className="pt-4 border-t border-border animate-fade-in flex items-center gap-4" style={{ animationDelay: "320ms", animationFillMode: "both" }}>
               <a href="tel:0509766643" className="flex items-center gap-2 text-primary font-medium">
                 <Phone className="w-4 h-4" />
-                <span>0509766643</span>
+                <span dir="ltr">050-976-6643</span>
+              </a>
+              <a href="tel:052092863" className="flex items-center gap-2 text-primary font-medium">
+                <Phone className="w-4 h-4" />
+                <span dir="ltr">052-092-863</span>
               </a>
             </div>
           </div>

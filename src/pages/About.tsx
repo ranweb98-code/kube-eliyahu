@@ -2,24 +2,14 @@ import Header from "../components/header/Header";
 import Footer from "../components/footer/Footer";
 import kubbeh6 from "@/assets/kubbeh-6.jpg";
 import kubbeh8 from "@/assets/kubbeh-8.jpg";
-import grandmaIllustration from "@/assets/grandma-illustration.png";
+import grandmaIllustration from "@/assets/grandma-illustration-white.png";
 
 const About = () => {
   return (
-    <div className="min-h-screen bg-white relative">
-      {/* Background illustration */}
-      <div 
-        className="fixed inset-0 pointer-events-none opacity-[0.07] z-0"
-        style={{
-          backgroundImage: `url(${grandmaIllustration})`,
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat',
-          backgroundSize: '60%',
-        }}
-      />
+    <div className="min-h-screen bg-background">
       <Header />
       
-      <main className="pt-32 pb-12 px-6 relative z-10">
+      <main className="pt-32 pb-12 px-6">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12">
             <h1 className="font-serif text-4xl md:text-5xl font-bold text-foreground mb-4">
@@ -31,6 +21,15 @@ const About = () => {
           </div>
 
           <div className="space-y-16">
+            {/* Grandma illustration */}
+            <div className="flex justify-center">
+              <img 
+                src={grandmaIllustration} 
+                alt="איור סבתא" 
+                className="w-64 md:w-80 h-auto"
+              />
+            </div>
+
             {/* Section 1 */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
               <div className="rounded-lg overflow-hidden aspect-[4/3]">

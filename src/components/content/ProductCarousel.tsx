@@ -68,7 +68,7 @@ const ProductCarousel = () => {
       <AnimateOnScroll>
         <div className="max-w-5xl mx-auto mb-8">
           <h2 className="font-serif text-2xl md:text-3xl font-bold text-foreground">
-            התפריט שלנו
+            המוצרים שלנו
           </h2>
         </div>
       </AnimateOnScroll>

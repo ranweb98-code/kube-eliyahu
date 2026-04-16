@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Phone, Instagram, Facebook } from "lucide-react";
+import { Phone, Instagram, Facebook, Globe } from "lucide-react";
+import { useLanguage } from "@/i18n/LanguageContext";
 import logo from "@/assets/logo.jpg";
 
 const Navigation = () => {
@@ -8,6 +9,7 @@ const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
   const isHome = location.pathname === "/";
+  const { lang, setLang, t } = useLanguage();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -20,15 +22,18 @@ const Navigation = () => {
   const showSolid = !isHome || isScrolled || isMobileMenuOpen;
 
   const navItems = [
-    { name: "ראשי", href: "/" },
-    { name: "המוצרים", href: "/products" },
-    { name: "אודות", href: "/about" },
-    { name: "צור קשר", href: "/contact" },
-    { name: "נקודות רכישה", href: "/store-locations" },
+    { name: t.nav.home, href: "/" },
+    { name: t.nav.products, href: "/products" },
+    { name: t.nav.about, href: "/about" },
+    { name: t.nav.contact, href: "/contact" },
+    { name: t.nav.storeLocations, href: "/store-locations" },
   ];
+
+  const toggleLang = () => setLang(lang === "he" ? "en" : "he");
 
   return (
     <nav
+      dir={lang === "he" ? "rtl" : "ltr"}
       className={`relative transition-all duration-500 ${
         showSolid
           ? "bg-card/95 backdrop-blur-md border-b border-border shadow-sm"
@@ -36,11 +41,11 @@ const Navigation = () => {
       }`}
     >
       <div className="flex items-center justify-between h-20 px-6">
-        {/* Right side - Nav links (desktop) */}
+        {/* Right side (RTL) / Left side (LTR) - Nav links (desktop) */}
         <div className="hidden md:flex items-center gap-8">
           {navItems.map((item) => (
             <Link
-              key={item.name}
+              key={item.href}
               to={item.href}
               className={`story-link transition-colors text-sm font-medium ${
                 showSolid
@@ -57,7 +62,7 @@ const Navigation = () => {
         <button
           className="md:hidden p-2"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          aria-label="תפריט"
+          aria-label={lang === "he" ? "תפריט" : "Menu"}
         >
           <div className="w-6 h-5 relative">
             <span className={`absolute block w-6 h-0.5 transition-all duration-300 ${
@@ -85,8 +90,19 @@ const Navigation = () => {
           />
         </Link>
 
-        {/* Left side - Contact icons */}
-        <div className="flex items-center gap-3">
+        {/* Left side (RTL) / Right side (LTR) - Contact icons + lang toggle */}
+        <div className="flex items-center gap-2">
+          {/* Language toggle */}
+          <button
+            onClick={toggleLang}
+            className={`p-2 transition-colors hover-scale flex items-center gap-1 text-xs font-semibold rounded-full ${
+              showSolid ? "text-foreground hover:text-primary" : "text-white/90 hover:text-white"
+            }`}
+            aria-label={lang === "he" ? "Switch to English" : "עבור לעברית"}
+          >
+            <Globe className="w-4 h-4" />
+            <span>{lang === "he" ? "EN" : "עב"}</span>
+          </button>
           <a
             href="https://www.facebook.com/profile.php?id=100075824275094"
             target="_blank"
@@ -94,7 +110,7 @@ const Navigation = () => {
             className={`p-2 transition-colors hover-scale ${
               showSolid ? "text-foreground hover:text-primary" : "text-white/90 hover:text-white"
             }`}
-            aria-label="פייסבוק"
+            aria-label="Facebook"
           >
             <Facebook className="w-5 h-5" />
           </a>
@@ -105,7 +121,7 @@ const Navigation = () => {
             className={`p-2 transition-colors hover-scale ${
               showSolid ? "text-foreground hover:text-primary" : "text-white/90 hover:text-white"
             }`}
-            aria-label="אינסטגרם"
+            aria-label="Instagram"
           >
             <Instagram className="w-5 h-5" />
           </a>
@@ -114,7 +130,7 @@ const Navigation = () => {
             className={`p-2 transition-colors hover-scale ${
               showSolid ? "text-foreground hover:text-primary" : "text-white/90 hover:text-white"
             }`}
-            aria-label="טלפון"
+            aria-label={lang === "he" ? "טלפון" : "Phone"}
           >
             <Phone className="w-5 h-5" />
           </a>
@@ -127,7 +143,7 @@ const Navigation = () => {
           <div className="px-6 py-6 space-y-4">
             {navItems.map((item, i) => (
               <Link
-                key={item.name}
+                key={item.href}
                 to={item.href}
                 className="block text-foreground hover:text-primary transition-colors text-lg font-medium py-2 animate-fade-in"
                 style={{ animationDelay: `${i * 80}ms`, animationFillMode: "both" }}

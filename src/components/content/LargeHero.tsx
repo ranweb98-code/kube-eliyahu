@@ -1,5 +1,5 @@
 import heroImage from "@/assets/kubbeh-1.jpg";
-import { Phone, ArrowDown } from "lucide-react";
+import { Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const LargeHero = () => {

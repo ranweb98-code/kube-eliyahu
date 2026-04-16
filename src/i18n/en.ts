@@ -162,4 +162,4 @@ export const en: typeof he = {
     branches: "branches",
     navigate: "Navigate",
   },
-} as const;
+};

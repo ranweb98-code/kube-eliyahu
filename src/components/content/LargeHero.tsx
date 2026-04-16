@@ -25,17 +25,11 @@ const LargeHero = () => {
           <p className="text-base md:text-lg text-white/70 mb-8 max-w-md animate-hero-slide-up" style={{ animationDelay: "0.7s" }}>
             קובה ביתית מסורתית בהכנה אישית ובאהבה, מדור לדור
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 animate-hero-slide-up" style={{ animationDelay: "0.9s" }}>
+          <div className="animate-hero-slide-up" style={{ animationDelay: "0.9s" }}>
             <a href="https://wa.me/972509766643" target="_blank" rel="noopener noreferrer">
-              <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 rounded-full px-8 py-6 text-lg font-semibold gap-2 shadow-lg">
+              <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 rounded-full px-10 py-6 text-lg font-semibold gap-2 shadow-lg">
                 <Phone className="w-5 h-5" />
                 להזמנה עכשיו
-              </Button>
-            </a>
-            <a href="tel:0509766643">
-              <Button size="lg" variant="outline" className="rounded-full px-8 py-6 text-lg font-semibold gap-2 border-white/40 text-white hover:bg-white/10 hover:text-white">
-                <Phone className="w-5 h-5" />
-                <span dir="ltr">050-976-6643</span>
               </Button>
             </a>
           </div>

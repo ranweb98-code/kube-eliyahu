@@ -40,8 +40,8 @@ const CountUp = ({ target, suffix = "" }: { target: number; suffix?: string }) =
 
   return (
     <div ref={ref} className="text-center">
-      <p className="text-5xl md:text-6xl font-extrabold text-accent mb-2">
-        {count}+{suffix}
+      <p className="text-3xl sm:text-5xl md:text-6xl font-extrabold text-accent mb-2">
+        +{count}{suffix}
       </p>
     </div>
   );
@@ -59,7 +59,7 @@ const EditorialSection = () => {
       <div className="max-w-5xl mx-auto">
         {/* Animated Counters */}
         <AnimateOnScroll className="mb-16">
-          <div className="bg-primary rounded-2xl p-10 md:p-14">
+          <div className="bg-primary rounded-2xl p-6 md:p-14 overflow-hidden">
             <div className="grid grid-cols-3 gap-6">
               {stats.map((s, i) => (
                 <div key={i} className="text-center">

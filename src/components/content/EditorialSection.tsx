@@ -71,33 +71,6 @@ const EditorialSection = () => {
           </div>
         </AnimateOnScroll>
 
-        {/* Story */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-          <AnimateOnScroll className="text-center md:text-right space-y-6">
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground leading-tight">
-              הסיפור שלנו
-            </h2>
-            <p className="text-muted-foreground leading-relaxed">
-              קובה אליהו נולד מתוך אהבה אמיתית למטבח הביתי המסורתי של בית סבתא. כבר שנים ארוכות אנחנו מכינים קובה בעבודת יד, עם אותם חומרי גלם איכותיים ואותו מתכון מסורתי שעובר מדור לדור.
-            </p>
-            <p className="text-muted-foreground leading-relaxed">
-              אנחנו מאמינים שאוכל טוב מחבר אנשים ומשפחות. כל קובה שיוצאת מהמטבח שלנו מוכנה באהבה ובקפידה, בדיוק כמו שסבתא הייתה מכינה – בלי קיצורי דרך ובלי פשרות על הטעם.
-            </p>
-            <p className="text-muted-foreground leading-relaxed">
-              מהמטבח הקטן שלנו הצלחנו להגיע ללקוחות בכל רחבי הארץ, ואנחנו גאים בכל מנה שמוגשת על שולחן המשפחה שלכם.
-            </p>
-          </AnimateOnScroll>
-
-          <AnimateOnScroll delay={200} className="order-first md:order-last">
-            <div className="w-full aspect-square overflow-hidden rounded-2xl">
-              <img
-                src={kubbeh8}
-                alt="הכנת קובה מסורתית"
-                className="w-full h-full object-cover"
-              />
-            </div>
-          </AnimateOnScroll>
-        </div>
       </div>
     </section>
   );

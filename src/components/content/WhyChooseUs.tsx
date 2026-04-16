@@ -1,9 +1,6 @@
-import { lazy, Suspense } from "react";
 import AnimateOnScroll from "@/components/AnimateOnScroll";
 import { Heart, Leaf, ChefHat, Users } from "lucide-react";
 import { useLanguage } from "@/i18n/LanguageContext";
-
-const KubbehSphere3D = lazy(() => import("./KubbehSphere3D"));
 
 const icons = [ChefHat, Leaf, Heart, Users];
 
@@ -14,9 +11,16 @@ const WhyChooseUs = () => {
     <section className="w-full py-20 px-6 bg-secondary/50" dir={dir}>
       <div className="max-w-5xl mx-auto">
         <AnimateOnScroll className="text-center mb-14">
-          <Suspense fallback={<div className="w-[280px] h-[280px] md:w-[360px] md:h-[360px] mx-auto" />}>
-            <KubbehSphere3D />
-          </Suspense>
+          <div className="w-[280px] h-[280px] md:w-[360px] md:h-[360px] mx-auto rounded-full overflow-hidden shadow-lg">
+            <video
+              src="/videos/kubbeh.mov"
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="w-full h-full object-cover"
+            />
+          </div>
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-3 mt-6">
             {t.whyChoose.title}
           </h2>

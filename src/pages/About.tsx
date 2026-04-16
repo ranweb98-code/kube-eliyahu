@@ -23,10 +23,10 @@ const About = () => {
           <div className="space-y-16">
             {/* Grandma illustration */}
             <div className="flex justify-center">
-              <img 
-                src={grandmaIllustration} 
-                alt="איור סבתא" 
-                className="w-64 md:w-80 h-auto"
+              <img
+                src={grandmaIllustration}
+                alt="איור סבתא"
+                className="w-72 md:w-[22rem] h-auto object-contain"
               />
             </div>
 

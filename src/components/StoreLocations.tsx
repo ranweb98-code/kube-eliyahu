@@ -1,6 +1,7 @@
-import { useState, useMemo } from "react";
-import { MapPin, Phone, Search, Navigation } from "lucide-react";
+import { useState, useMemo, useEffect } from "react";
+import { MapPin, Phone, Search, Navigation, Loader2 } from "lucide-react";
 import { Input } from "@/components/ui/input";
+import { supabase } from "@/integrations/supabase/client";
 
 interface Store {
   name: string;
@@ -13,7 +14,8 @@ interface CityGroup {
   stores: Store[];
 }
 
-const storeData: CityGroup[] = [
+// Fallback static data
+const staticStoreData: CityGroup[] = [
   {
     city: "ירושלים",
     stores: [
@@ -49,155 +51,68 @@ const storeData: CityGroup[] = [
       { name: "עידן הבשר", address: "פארן 7" },
     ],
   },
-  {
-    city: "בית שמש",
-    stores: [
-      { name: "קצביית יגאל חזן", address: "נוימן 60" },
-      { name: "קלית יבגי", address: "יגאל אלון 24" },
-      { name: "סופר מלכה", address: "הנשיא 46" },
-      { name: "קצביית ברכת שמואל", address: "נחל זוהר 3" },
-      { name: "אושרי קצבים", address: 'שד\' הדקל 11' },
-      { name: "רחמים דגים", address: "יצחק רבין 19" },
-      { name: "ברכת השדה", address: "העליה 17" },
-      { name: "אריאל ובניו שיווק בשר", address: "המלאכה 2, הר טוב" },
-      { name: "הקצבים מירושלים", address: "מנחם פרוש 14" },
-      { name: "בסט מרקט", address: "נחל דולב 19" },
-      { name: "מעדני הים", address: "יצחק רבין 11" },
-      { name: "העושר שבטבע", address: "אזור תעשיה הר טוב" },
-    ],
-  },
-  {
-    city: "מעלה אדומים",
-    stores: [
-      { name: "איטליז הקצבים", address: "דרך צמח השדה 76" },
-      { name: "מעדני אורי ובניו", address: "קניון עופר" },
-      { name: "בשר אדום", address: "סנטר 06, צמח השדה 26" },
-      { name: "שום פלפל שמן זית", address: "צמח השדה 29" },
-    ],
-  },
-  {
-    city: "מבשרת ציון",
-    stores: [
-      { name: "סופר זול אקספרס", address: "אורן 47" },
-      { name: "סופר דיל", address: "החוצבים 5" },
-    ],
-  },
-  {
-    city: "אפרת",
-    stores: [
-      { name: "מיטליז", address: "נצר ישי 1" },
-      { name: "סופר דיל", address: "מרכז מסחרי דקל 8" },
-    ],
-  },
-  {
-    city: "צומת שילת",
-    stores: [{ name: "קייק אנד בייק", address: "מול הפיראט האדום" }],
-  },
-  {
-    city: "צור הדסה",
-    stores: [{ name: "צוריאל מרקט", address: "דפנה 2" }],
-  },
-  {
-    city: "נס הרים",
-    stores: [{ name: "מכולת נס הרים" }],
-  },
-  {
-    city: "נחושה",
-    stores: [{ name: "בסט מרקט" }],
-  },
-  {
-    city: "זכריה",
-    stores: [{ name: "בסט מרקט" }],
-  },
-  {
-    city: "מבוא חורון",
-    stores: [{ name: "זליט פנחס צרכנית מבוא חורון" }],
-  },
-  {
-    city: "מודיעין",
-    stores: [{ name: "אריאל מיט", address: "חיים ויצמן 7" }],
-  },
-  {
-    city: "תל אביב",
-    stores: [
-      { name: "קלית יבגי", address: "ראול וינברג 32" },
-      { name: "האיטליז של רפי", address: "אבן גבירול 53" },
-    ],
-  },
-  {
-    city: "ראשון לציון",
-    stores: [{ name: "קלית יבגי", address: "ברשבסקי 17" }],
-  },
-  {
-    city: "נס ציונה",
-    stores: [{ name: "קלית יבגי", address: "ויצמן 15" }],
-  },
-  {
-    city: "רחובות",
-    stores: [
-      { name: "סופר הטוב והמיטיב", address: "יוסף וינר 2" },
-      { name: "קנדי מול", address: "בילו" },
-    ],
-  },
-  {
-    city: "בת ים",
-    stores: [{ name: "שפע אביב", address: "ניסבאום יצחק 44" }],
-  },
-  {
-    city: "בני ברק",
-    stores: [{ name: "כל הקפואים", address: "רבי עקיבא 50" }],
-  },
-  {
-    city: "גבעתיים",
-    stores: [{ name: "חנות הבשר של דני", address: "מנורה 6" }],
-  },
-  {
-    city: "אור יהודה",
-    stores: [{ name: "האחים שקורי", address: "אליהו סעדון 130" }],
-  },
-  {
-    city: "לוד",
-    stores: [{ name: "פיצוחי שרעבי", address: "איילון 12" }],
-  },
-  {
-    city: "כפר סבא",
-    stores: [{ name: "הקצבייה של נועם טלמור", address: "ירושלים 30" }],
-  },
-  {
-    city: "ראש העין",
-    stores: [{ name: "קיבוץ נחשונים", address: "כלבו נחשונים" }],
-  },
-  {
-    city: "פרדס חנה-כרכור",
-    stores: [{ name: "מיט אנד פיש", address: "המייסדים 40" }],
-  },
-  {
-    city: "אלעד",
-    stores: [{ name: "מעדני איטליז", address: "יהודה הנשיא 94" }],
-  },
-  {
-    city: "אריאל",
-    stores: [{ name: "מעדני אריאל", address: "דרך הנחשונים 33" }],
-  },
-  {
-    city: "יצהר",
-    stores: [{ name: "הצרכניוש יצהר" }],
-  },
-  {
-    city: "באר שבע",
-    stores: [
-      { name: "מיני זול אליעד", address: "העליה 11" },
-      { name: "אל הבקר ייצור ושיווק", address: "יצחק רגר 185" },
-    ],
-  },
-  {
-    city: "קרית מלאכי",
-    stores: [{ name: "על העצם", address: "רחוב התעשיה" }],
-  },
-  {
-    city: "שדרות",
-    stores: [{ name: "יוסי", phone: "050-343-0343" }],
-  },
+  { city: "בית שמש", stores: [
+    { name: "קצביית יגאל חזן", address: "נוימן 60" },
+    { name: "קלית יבגי", address: "יגאל אלון 24" },
+    { name: "סופר מלכה", address: "הנשיא 46" },
+    { name: "קצביית ברכת שמואל", address: "נחל זוהר 3" },
+    { name: "אושרי קצבים", address: 'שד\' הדקל 11' },
+    { name: "רחמים דגים", address: "יצחק רבין 19" },
+    { name: "ברכת השדה", address: "העליה 17" },
+    { name: "אריאל ובניו שיווק בשר", address: "המלאכה 2, הר טוב" },
+    { name: "הקצבים מירושלים", address: "מנחם פרוש 14" },
+    { name: "בסט מרקט", address: "נחל דולב 19" },
+    { name: "מעדני הים", address: "יצחק רבין 11" },
+    { name: "העושר שבטבע", address: "אזור תעשיה הר טוב" },
+  ]},
+  { city: "מעלה אדומים", stores: [
+    { name: "איטליז הקצבים", address: "דרך צמח השדה 76" },
+    { name: "מעדני אורי ובניו", address: "קניון עופר" },
+    { name: "בשר אדום", address: "סנטר 06, צמח השדה 26" },
+    { name: "שום פלפל שמן זית", address: "צמח השדה 29" },
+  ]},
+  { city: "מבשרת ציון", stores: [
+    { name: "סופר זול אקספרס", address: "אורן 47" },
+    { name: "סופר דיל", address: "החוצבים 5" },
+  ]},
+  { city: "אפרת", stores: [
+    { name: "מיטליז", address: "נצר ישי 1" },
+    { name: "סופר דיל", address: "מרכז מסחרי דקל 8" },
+  ]},
+  { city: "צומת שילת", stores: [{ name: "קייק אנד בייק", address: "מול הפיראט האדום" }] },
+  { city: "צור הדסה", stores: [{ name: "צוריאל מרקט", address: "דפנה 2" }] },
+  { city: "נס הרים", stores: [{ name: "מכולת נס הרים" }] },
+  { city: "נחושה", stores: [{ name: "בסט מרקט" }] },
+  { city: "זכריה", stores: [{ name: "בסט מרקט" }] },
+  { city: "מבוא חורון", stores: [{ name: "זליט פנחס צרכנית מבוא חורון" }] },
+  { city: "מודיעין", stores: [{ name: "אריאל מיט", address: "חיים ויצמן 7" }] },
+  { city: "תל אביב", stores: [
+    { name: "קלית יבגי", address: "ראול וינברג 32" },
+    { name: "האיטליז של רפי", address: "אבן גבירול 53" },
+  ]},
+  { city: "ראשון לציון", stores: [{ name: "קלית יבגי", address: "ברשבסקי 17" }] },
+  { city: "נס ציונה", stores: [{ name: "קלית יבגי", address: "ויצמן 15" }] },
+  { city: "רחובות", stores: [
+    { name: "סופר הטוב והמיטיב", address: "יוסף וינר 2" },
+    { name: "קנדי מול", address: "בילו" },
+  ]},
+  { city: "בת ים", stores: [{ name: "שפע אביב", address: "ניסבאום יצחק 44" }] },
+  { city: "בני ברק", stores: [{ name: "כל הקפואים", address: "רבי עקיבא 50" }] },
+  { city: "גבעתיים", stores: [{ name: "חנות הבשר של דני", address: "מנורה 6" }] },
+  { city: "אור יהודה", stores: [{ name: "האחים שקורי", address: "אליהו סעדון 130" }] },
+  { city: "לוד", stores: [{ name: "פיצוחי שרעבי", address: "איילון 12" }] },
+  { city: "כפר סבא", stores: [{ name: "הקצבייה של נועם טלמור", address: "ירושלים 30" }] },
+  { city: "ראש העין", stores: [{ name: "קיבוץ נחשונים", address: "כלבו נחשונים" }] },
+  { city: "פרדס חנה-כרכור", stores: [{ name: "מיט אנד פיש", address: "המייסדים 40" }] },
+  { city: "אלעד", stores: [{ name: "מעדני איטליז", address: "יהודה הנשיא 94" }] },
+  { city: "אריאל", stores: [{ name: "מעדני אריאל", address: "דרך הנחשונים 33" }] },
+  { city: "יצהר", stores: [{ name: "הצרכניוש יצהר" }] },
+  { city: "באר שבע", stores: [
+    { name: "מיני זול אליעד", address: "העליה 11" },
+    { name: "אל הבקר ייצור ושיווק", address: "יצחק רגר 185" },
+  ]},
+  { city: "קרית מלאכי", stores: [{ name: "על העצם", address: "רחוב התעשיה" }] },
+  { city: "שדרות", stores: [{ name: "יוסי", phone: "050-343-0343" }] },
 ];
 
 const getMapsUrl = (storeName: string, address: string, city: string) =>
@@ -205,6 +120,24 @@ const getMapsUrl = (storeName: string, address: string, city: string) =>
 
 const StoreLocations = () => {
   const [search, setSearch] = useState("");
+  const [storeData, setStoreData] = useState<CityGroup[]>(staticStoreData);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchStores = async () => {
+      try {
+        const { data, error } = await supabase.functions.invoke("get-store-locations");
+        if (!error && data && Array.isArray(data) && data.length > 0) {
+          setStoreData(data);
+        }
+      } catch {
+        // Use static fallback
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    fetchStores();
+  }, []);
 
   const filtered = useMemo(() => {
     if (!search.trim()) return storeData;
@@ -220,7 +153,7 @@ const StoreLocations = () => {
         ),
       }))
       .filter((g) => g.stores.length > 0);
-  }, [search]);
+  }, [search, storeData]);
 
   const totalStores = storeData.reduce((sum, g) => sum + g.stores.length, 0);
 
@@ -228,7 +161,7 @@ const StoreLocations = () => {
     <section dir="rtl" className="mt-16">
       {/* Header */}
       <div className="text-center mb-8">
-        <h2 className="font-serif text-3xl md:text-4xl font-bold text-foreground mb-3">
+        <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-3">
           נקודות רכישה
         </h2>
         <p className="text-muted-foreground text-base max-w-xl mx-auto">
@@ -247,6 +180,12 @@ const StoreLocations = () => {
         />
       </div>
 
+      {isLoading && (
+        <div className="text-center py-8">
+          <Loader2 className="w-6 h-6 text-primary animate-spin mx-auto" />
+        </div>
+      )}
+
       {/* Store Grid */}
       {filtered.length === 0 ? (
         <p className="text-center text-muted-foreground py-12">לא נמצאו תוצאות עבור &quot;{search}&quot;</p>
@@ -259,7 +198,7 @@ const StoreLocations = () => {
             >
               {/* City Header */}
               <div className="bg-primary px-5 py-3">
-                <h3 className="font-serif text-lg font-semibold text-primary-foreground flex items-center gap-2">
+                <h3 className="text-lg font-semibold text-primary-foreground flex items-center gap-2">
                   <MapPin className="w-4 h-4 flex-shrink-0" />
                   {group.city}
                   <span className="mr-auto text-xs font-normal opacity-80">

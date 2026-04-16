@@ -11,16 +11,14 @@ const WhyChooseUs = () => {
     <section className="w-full py-20 px-6 bg-secondary/50" dir={dir}>
       <div className="max-w-5xl mx-auto">
         <AnimateOnScroll className="text-center mb-14">
-          <div className="w-[280px] h-[280px] md:w-[360px] md:h-[360px] mx-auto rounded-full overflow-hidden shadow-lg">
-            <video
-              src="/videos/kubbeh.mov"
-              autoPlay
-              loop
-              muted
-              playsInline
-              className="w-full h-full object-cover"
-            />
-          </div>
+          <video
+            src="/videos/kubbeh.mov"
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="w-full max-w-[420px] h-auto mx-auto"
+          />
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-3 mt-6">
             {t.whyChoose.title}
           </h2>

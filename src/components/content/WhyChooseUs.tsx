@@ -1,5 +1,8 @@
+import { lazy, Suspense } from "react";
 import AnimateOnScroll from "@/components/AnimateOnScroll";
 import { Heart, Leaf, ChefHat, Users } from "lucide-react";
+
+const KubbehSphere3D = lazy(() => import("./KubbehSphere3D"));
 
 const features = [
   {

@@ -1,5 +1,8 @@
+import { lazy, Suspense } from "react";
 import AnimateOnScroll from "@/components/AnimateOnScroll";
 import { Heart, Leaf, ChefHat, Users } from "lucide-react";
+
+const KubbehSphere3D = lazy(() => import("./KubbehSphere3D"));
 
 const features = [
   {
@@ -29,7 +32,10 @@ const WhyChooseUs = () => {
     <section className="w-full py-20 px-6 bg-secondary/50">
       <div className="max-w-5xl mx-auto">
         <AnimateOnScroll className="text-center mb-14">
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-3">
+          <Suspense fallback={<div className="w-[280px] h-[280px] md:w-[360px] md:h-[360px] mx-auto" />}>
+            <KubbehSphere3D />
+          </Suspense>
+          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-3 mt-6">
             למה לבחור בנו?
           </h2>
           <p className="text-muted-foreground text-base max-w-xl mx-auto">

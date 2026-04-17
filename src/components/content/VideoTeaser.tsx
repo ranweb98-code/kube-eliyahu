@@ -14,7 +14,7 @@ const VideoTeaser = () => {
             loop
             muted
             playsInline
-            className="w-full max-w-[420px] h-auto mx-auto rounded-3xl"
+            className="w-full mx-auto rounded-3xl aspect-video object-cover"
           />
         </AnimateOnScroll>
       </div>

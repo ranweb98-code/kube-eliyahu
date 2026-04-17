@@ -148,4 +148,50 @@
   .hover-scale {
     @apply transition-transform duration-200 hover:scale-105;
   }
+
+  .rotating-border {
+    position: relative;
+    isolation: isolate;
+  }
+  .rotating-border::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: inherit;
+    padding: 2px;
+    background: conic-gradient(
+      from var(--angle, 0deg),
+      transparent 0deg,
+      hsl(var(--primary)) 90deg,
+      hsl(var(--accent)) 180deg,
+      hsl(var(--primary)) 270deg,
+      transparent 360deg
+    );
+    -webkit-mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    animation: border-spin 3s linear infinite;
+    animation-play-state: paused;
+    z-index: -1;
+  }
+  .rotating-border:hover::before {
+    opacity: 1;
+    animation-play-state: running;
+  }
+}
+
+@property --angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes border-spin {
+  to {
+    --angle: 360deg;
+  }
 }

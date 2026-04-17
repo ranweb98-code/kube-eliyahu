@@ -32,7 +32,7 @@ const WhyChooseUs = () => {
             const Icon = icons[i];
             return (
               <AnimateOnScroll key={i} delay={i * 120}>
-                <div className="bg-card rounded-2xl p-6 text-center shadow-sm hover:shadow-md transition-shadow h-full">
+                <div className="rotating-border bg-card rounded-2xl p-6 text-center shadow-sm hover:shadow-md transition-shadow h-full">
                   <div className="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
                     <Icon className="w-7 h-7 text-primary" />
                   </div>

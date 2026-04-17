@@ -19,14 +19,6 @@ const WhyChooseUs = () => {
             playsInline
             className="w-full max-w-[420px] h-auto mx-auto rounded-3xl"
           />
-          <video
-            src="/videos/kubbeh-2.mov"
-            autoPlay
-            loop
-            muted
-            playsInline
-            className="w-full max-w-[420px] h-auto mx-auto rounded-3xl mt-6"
-          />
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-3 mt-6">
             {t.whyChoose.title}
           </h2>

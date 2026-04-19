@@ -11,7 +11,7 @@ export const he = {
     title: "קובה אליהו" as string,
     subtitle: "טעמים מבית סבתא" as string,
     description: "קובה ביתית מסורתית בהכנה אישית ובאהבה, מדור לדור" as string,
-    orderNow: "להזמנה עכשיו" as string,
+    orderNow: "איפה לקנות" as string,
   },
   whyChoose: {
     title: "למה לבחור בנו?" as string,

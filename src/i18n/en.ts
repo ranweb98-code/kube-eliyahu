@@ -12,7 +12,7 @@ export const en: typeof he = {
     title: "Kube Eliyahu",
     subtitle: "Grandma's Flavors",
     description: "Traditional homemade kubbeh, crafted with love from generation to generation",
-    orderNow: "Order Now",
+    orderNow: "Where to Buy",
   },
   whyChoose: {
     title: "Why Choose Us?",

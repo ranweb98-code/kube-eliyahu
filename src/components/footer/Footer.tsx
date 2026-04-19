@@ -46,10 +46,6 @@ const Footer = () => {
                 <Phone className="w-4 h-4 flex-shrink-0" />
                 <span dir="ltr">050-976-6643</span>
               </a>
-              <a href="tel:052092863" className="flex items-center gap-2 justify-center md:justify-start hover:text-primary-foreground transition-colors">
-                <Phone className="w-4 h-4 flex-shrink-0" />
-                <span dir="ltr">052-092-863</span>
-              </a>
               <a href="mailto:kube8eliyahu@gmail.com" className="flex items-center gap-2 justify-center md:justify-start hover:text-primary-foreground transition-colors">
                 <Mail className="w-4 h-4 flex-shrink-0" />
                 <span>kube8eliyahu@gmail.com</span>

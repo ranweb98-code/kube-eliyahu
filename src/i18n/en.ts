@@ -20,13 +20,13 @@ export const en: typeof he = {
     features: [
       { title: "Grandma's Recipe", description: "A traditional recipe passed down from generation to generation" },
       { title: "Natural Ingredients", description: "Premium fresh ingredients with no preservatives" },
-      { title: "Made with Love", description: "Every kubbeh is handmade with attention to every detail" },
+      { title: "Made with Love", description: "Every kubbeh is prepared with care and attention to every detail" },
       { title: "Personal Service", description: "Professional guidance and warm family-like service" },
     ],
   },
   fiftyFifty: {
     title: "Our Recommendations",
-    subtitle: "Homemade kubbeh with rich filling, crafted by hand in the traditional way",
+    subtitle: "Homemade kubbeh with rich filling, prepared in the authentic traditional way",
     detailsAndRecipe: "Details & Recipe",
     products: [
       { name: "Beet Kubbeh", description: "Kubbeh for soup with fresh beef filling, served with rich red beet" },
@@ -82,7 +82,7 @@ export const en: typeof he = {
     grandmaAlt: "Grandma illustration",
     section1Title: "Grandma's Recipe",
     section1P1: "Kube Eliyahu was born from a genuine love for the traditional home kitchen. Our recipes are passed down from generation to generation, with the same authentic taste remembered from grandma's house.",
-    section1P2: "Every kubbeh is handmade with fresh, high-quality ingredients, without preservatives or unnecessary additives.",
+    section1P2: "Every kubbeh is prepared with care, using fresh, high-quality ingredients, without preservatives or unnecessary additives.",
     section2Title: "Uncompromising Quality",
     section2P: "We maintain strict kosher standards, top-tier ingredients, and a meticulous preparation process. Every dish undergoes quality control before leaving our kitchen.",
     qualityLabels: [

@@ -115,6 +115,21 @@ const Contact = () => {
             </div>
           </div>
 
+          {/* Business contact - Itamar - separated and emphasized */}
+          <div className="mt-8 bg-gradient-to-br from-accent/15 via-card to-primary/10 rounded-2xl p-8 text-center shadow-md border-2 border-accent/40">
+            <div className="w-16 h-16 bg-accent/20 rounded-full flex items-center justify-center mx-auto mb-4">
+              <Briefcase className="w-7 h-7 text-accent" />
+            </div>
+            <h3 className="text-xl md:text-2xl font-bold mb-1 text-foreground">{t.contact.businessTitle}</h3>
+            <p className="text-muted-foreground text-sm mb-5">{t.contact.businessSubtitle}</p>
+            <a href="tel:0509766643">
+              <Button className="bg-accent text-accent-foreground hover:bg-accent/90 rounded-full px-8 py-6 text-base gap-2 font-semibold shadow-md">
+                <Phone className="w-5 h-5" />
+                {t.contact.businessName} · <span dir="ltr" className="font-bold">050-976-6643</span>
+              </Button>
+            </a>
+          </div>
+
           <div className="mt-8 bg-card rounded-xl p-8 text-center shadow-sm">
             <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
               <MapPin className="w-7 h-7 text-primary" />

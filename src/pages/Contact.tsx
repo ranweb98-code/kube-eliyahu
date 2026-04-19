@@ -1,6 +1,6 @@
 import Header from "../components/header/Header";
 import Footer from "../components/footer/Footer";
-import { Phone, Instagram, Facebook, Clock, MapPin, Mail, Send } from "lucide-react";
+import { Phone, Instagram, Facebook, Clock, MapPin, Mail, Send, Briefcase } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -64,20 +64,12 @@ const Contact = () => {
               </div>
               <h3 className="text-xl font-semibold mb-2 text-foreground">{t.contact.phone}</h3>
               <p className="text-muted-foreground text-sm mb-4">{t.contact.phoneSubtitle}</p>
-              <div className="space-y-2">
-                <a href="tel:0509766643">
-                  <Button className="bg-primary text-primary-foreground hover:bg-primary-hover rounded-full px-6 gap-2 w-full">
-                    <Phone className="w-4 h-4" />
-                    <span dir="ltr">050-976-6643</span>
-                  </Button>
-                </a>
-                <a href="tel:052092863">
-                  <Button variant="outline" className="rounded-full px-6 gap-2 w-full border-primary text-primary hover:bg-primary hover:text-primary-foreground">
-                    <Phone className="w-4 h-4" />
-                    <span dir="ltr">052-092-863</span>
-                  </Button>
-                </a>
-              </div>
+              <a href="tel:0509766643">
+                <Button className="bg-primary text-primary-foreground hover:bg-primary-hover rounded-full px-6 gap-2 w-full">
+                  <Phone className="w-4 h-4" />
+                  <span dir="ltr">050-976-6643</span>
+                </Button>
+              </a>
             </div>
 
             <div className="bg-card rounded-xl p-8 text-center shadow-sm">
@@ -121,6 +113,21 @@ const Contact = () => {
                 </Button>
               </a>
             </div>
+          </div>
+
+          {/* Business contact - Itamar - separated and emphasized */}
+          <div className="mt-8 bg-gradient-to-br from-accent/15 via-card to-primary/10 rounded-2xl p-8 text-center shadow-md border-2 border-accent/40">
+            <div className="w-16 h-16 bg-accent/20 rounded-full flex items-center justify-center mx-auto mb-4">
+              <Briefcase className="w-7 h-7 text-accent" />
+            </div>
+            <h3 className="text-xl md:text-2xl font-bold mb-1 text-foreground">{t.contact.businessTitle}</h3>
+            <p className="text-muted-foreground text-sm mb-5">{t.contact.businessSubtitle}</p>
+            <a href="tel:0509766643">
+              <Button className="bg-accent text-accent-foreground hover:bg-accent/90 rounded-full px-8 py-6 text-base gap-2 font-semibold shadow-md">
+                <Phone className="w-5 h-5" />
+                {t.contact.businessName} · <span dir="ltr" className="font-bold">050-976-6643</span>
+              </Button>
+            </a>
           </div>
 
           <div className="mt-8 bg-card rounded-xl p-8 text-center shadow-sm">

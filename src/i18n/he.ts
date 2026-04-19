@@ -11,7 +11,7 @@ export const he = {
     title: "קובה אליהו" as string,
     subtitle: "טעמים מבית סבתא" as string,
     description: "קובה ביתית מסורתית בהכנה אישית ובאהבה, מדור לדור" as string,
-    orderNow: "להזמנה עכשיו" as string,
+    orderNow: "איפה לקנות" as string,
   },
   whyChoose: {
     title: "למה לבחור בנו?" as string,
@@ -19,13 +19,13 @@ export const he = {
     features: [
       { title: "מתכון מסבתא", description: "מתכון מסורתי שעובר מדור לדור, בדיוק כמו פעם" },
       { title: "מרכיבים טבעיים", description: "חומרי גלם איכותיים וטריים ללא חומרים משמרים" },
-      { title: "הכנה באהבה", description: "כל קובה מוכנה בעבודת יד עם תשומת לב לכל פרט" },
+      { title: "הכנה באהבה", description: "כל קובה מוכנה בקפידה ועם תשומת לב לכל פרט" },
       { title: "שירות אישי", description: "ליווי מקצועי ושירות חם ומשפחתי לכל לקוח" },
     ] as { title: string; description: string }[],
   },
   fiftyFifty: {
     title: "המומלצים שלנו" as string,
-    subtitle: "קובה ביתית במילוי עשיר, מוכנה בעבודת יד מסורתית" as string,
+    subtitle: "קובה ביתית במילוי עשיר, מוכנה במסורת אותנטית" as string,
     detailsAndRecipe: "לפרטים ומתכון" as string,
     products: [
       { name: "קובה סלק", description: "קובה למרק במילוי בשר בקר טרי, בתוספת סלק אדום" },
@@ -81,7 +81,7 @@ export const he = {
     grandmaAlt: "איור סבתא" as string,
     section1Title: "מתכון של סבתא" as string,
     section1P1: "קובה אליהו נולד מתוך אהבה אמיתית למטבח הביתי המסורתי. המתכונים שלנו עוברים מדור לדור, עם אותו טעם אותנטי שזוכרים מבית סבתא." as string,
-    section1P2: "כל קובה מוכנה בעבודת יד, עם חומרי גלם טריים ואיכותיים, ללא חומרים משמרים או תוספים מיותרים." as string,
+    section1P2: "כל קובה מוכנה בקפידה, עם חומרי גלם טריים ואיכותיים, ללא חומרים משמרים או תוספים מיותרים." as string,
     section2Title: "איכות ללא פשרות" as string,
     section2P: "אנחנו מקפידים על כשרות בשרית, חומרי גלם מהשורה הראשונה, ותהליך הכנה מדוקדק. כל מנה עוברת בקרת איכות לפני שהיא יוצאת מהמטבח שלנו." as string,
     qualityLabels: [
@@ -95,6 +95,9 @@ export const he = {
     subtitle: "נשמח לשמוע מכם ולעזור בכל שאלה או הזמנה" as string,
     phone: "טלפון" as string,
     phoneSubtitle: "להזמנות ובירורים" as string,
+    businessTitle: "לעסקים ושיתופי פעולה" as string,
+    businessSubtitle: "איתמר — שיווק, סיטונאות ושיתופי פעולה" as string,
+    businessName: "איתמר" as string,
     email: "אימייל" as string,
     emailSubtitle: "כתבו לנו ונחזור אליכם" as string,
     instagramTitle: "אינסטגרם" as string,
@@ -105,7 +108,7 @@ export const he = {
     storeLocationsSubtitle: "מצאו את נקודת המכירה הקרובה אליכם" as string,
     allStoreLocations: "לכל נקודות הרכישה" as string,
     formTitle: "שלחו לנו הודעה" as string,
-    formSubtitle: "נחזור אליכם בהקדם האפשרי" as string,
+    formSubtitle: "לפניות כלליות בלבד — נחזור אליכם בהקדם האפשרי" as string,
     nameLabel: "שם מלא" as string,
     namePlaceholder: "הכניסו את שמכם" as string,
     phoneLabel: "טלפון" as string,
@@ -123,6 +126,7 @@ export const he = {
     friday: "שישי" as string,
     saturday: "שבת" as string,
     closed: "סגור" as string,
+    quickStoresFloating: "נקודות רכישה" as string,
   },
   products: {
     title: "המוצרים שלנו" as string,

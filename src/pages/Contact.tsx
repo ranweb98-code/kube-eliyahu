@@ -1,6 +1,6 @@
 import Header from "../components/header/Header";
 import Footer from "../components/footer/Footer";
-import { Phone, Instagram, Facebook, Clock, MapPin, Mail, Send } from "lucide-react";
+import { Phone, Instagram, Facebook, Clock, MapPin, Mail, Send, Briefcase } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -64,20 +64,12 @@ const Contact = () => {
               </div>
               <h3 className="text-xl font-semibold mb-2 text-foreground">{t.contact.phone}</h3>
               <p className="text-muted-foreground text-sm mb-4">{t.contact.phoneSubtitle}</p>
-              <div className="space-y-2">
-                <a href="tel:0509766643">
-                  <Button className="bg-primary text-primary-foreground hover:bg-primary-hover rounded-full px-6 gap-2 w-full">
-                    <Phone className="w-4 h-4" />
-                    <span dir="ltr">050-976-6643</span>
-                  </Button>
-                </a>
-                <a href="tel:052092863">
-                  <Button variant="outline" className="rounded-full px-6 gap-2 w-full border-primary text-primary hover:bg-primary hover:text-primary-foreground">
-                    <Phone className="w-4 h-4" />
-                    <span dir="ltr">052-092-863</span>
-                  </Button>
-                </a>
-              </div>
+              <a href="tel:0509766643">
+                <Button className="bg-primary text-primary-foreground hover:bg-primary-hover rounded-full px-6 gap-2 w-full">
+                  <Phone className="w-4 h-4" />
+                  <span dir="ltr">050-976-6643</span>
+                </Button>
+              </a>
             </div>
 
             <div className="bg-card rounded-xl p-8 text-center shadow-sm">

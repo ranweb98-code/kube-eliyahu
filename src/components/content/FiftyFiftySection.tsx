@@ -4,6 +4,7 @@ import { ArrowLeft, ArrowRight } from "lucide-react";
 import { useLanguage } from "@/i18n/LanguageContext";
 import fiftyFiftyImage from "@/assets/fifty-fifty-image.jpg";
 import kubbeh3 from "@/assets/kubbeh-3.jpg";
+import Tilt3D from "@/components/Tilt3D";
 
 const FiftyFiftySection = () => {
   const { t, lang, dir } = useLanguage();
@@ -27,8 +28,9 @@ const FiftyFiftySection = () => {
             { image: kubbeh3, slug: "kubeh-siska", idx: 1 },
           ].map(({ image, slug, idx }) => (
             <AnimateOnScroll key={slug} delay={idx * 150}>
+              <Tilt3D className="rounded-lg" max={10} scale={1.03}>
               <Link to={`/products/${slug}`} className="group block">
-                <div className="w-full aspect-[4/3] mb-4 overflow-hidden rounded-lg relative">
+                <div className="w-full aspect-[4/3] mb-4 overflow-hidden rounded-lg relative shadow-xl">
                   <img
                     src={image}
                     alt={t.fiftyFifty.products[idx].name}
@@ -48,6 +50,7 @@ const FiftyFiftySection = () => {
                   {t.fiftyFifty.products[idx].description}
                 </p>
               </Link>
+              </Tilt3D>
             </AnimateOnScroll>
           ))}
         </div>

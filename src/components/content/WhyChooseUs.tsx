@@ -1,6 +1,7 @@
 import AnimateOnScroll from "@/components/AnimateOnScroll";
 import { Heart, Leaf, ChefHat, Users } from "lucide-react";
 import { useLanguage } from "@/i18n/LanguageContext";
+import Tilt3D from "@/components/Tilt3D";
 
 const icons = [ChefHat, Leaf, Heart, Users];
 
@@ -32,17 +33,22 @@ const WhyChooseUs = () => {
             const Icon = icons[i];
             return (
               <AnimateOnScroll key={i} delay={i * 120}>
-                <div className="rotating-border bg-card rounded-2xl p-6 text-center shadow-sm hover:shadow-md transition-shadow h-full">
-                  <div className="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Icon className="w-7 h-7 text-primary" />
+                <Tilt3D className="h-full rounded-2xl" max={14} scale={1.04}>
+                  <div className="rotating-border bg-card rounded-2xl p-6 text-center shadow-lg hover:shadow-2xl transition-shadow h-full">
+                    <div
+                      className="w-14 h-14 bg-gradient-to-br from-primary to-primary-hover rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg"
+                      style={{ transform: "translateZ(30px)" }}
+                    >
+                      <Icon className="w-7 h-7 text-primary-foreground" />
+                    </div>
+                    <h3 className="font-semibold text-foreground mb-2 text-sm md:text-base" style={{ transform: "translateZ(20px)" }}>
+                      {f.title}
+                    </h3>
+                    <p className="text-muted-foreground text-xs md:text-sm leading-relaxed" style={{ transform: "translateZ(10px)" }}>
+                      {f.description}
+                    </p>
                   </div>
-                  <h3 className="font-semibold text-foreground mb-2 text-sm md:text-base">
-                    {f.title}
-                  </h3>
-                  <p className="text-muted-foreground text-xs md:text-sm leading-relaxed">
-                    {f.description}
-                  </p>
-                </div>
+                </Tilt3D>
               </AnimateOnScroll>
             );
           })}

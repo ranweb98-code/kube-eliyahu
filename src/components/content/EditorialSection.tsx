@@ -56,8 +56,14 @@ const EditorialSection = () => {
     <section className="w-full py-20 px-6" dir={dir}>
       <div className="max-w-5xl mx-auto">
         <AnimateOnScroll className="mb-16">
-          <div className="bg-primary rounded-2xl p-6 md:p-14 overflow-hidden">
-            <div className="grid grid-cols-3 gap-6">
+          <div className="relative bg-gradient-to-br from-primary via-primary to-primary-hover rounded-2xl p-6 md:p-14 overflow-hidden shadow-2xl">
+            <div
+              className="absolute inset-0 opacity-30 pointer-events-none"
+              style={{
+                background: "radial-gradient(circle at 20% 20%, hsl(var(--accent) / 0.4), transparent 50%), radial-gradient(circle at 80% 80%, hsl(var(--accent) / 0.2), transparent 50%)",
+              }}
+            />
+            <div className="relative grid grid-cols-3 gap-6">
               {t.editorial.stats.map((s, i) => (
                 <div key={i} className="text-center">
                   <CountUp target={statTargets[i]} />
